@@ -28,7 +28,7 @@ namespace SSDUI
 
             IMenu mainMenu = new MainMenu();
             bool repeat = true;
-            string currentMenu = "MainMenu";
+            MenuType currentMenu = MenuType.MainMenu;
 
             while(repeat)
             {
@@ -38,13 +38,13 @@ namespace SSDUI
 
                 switch (currentMenu)
                 {
-                    case "MainMenu":
+                    case MenuType.MainMenu:
                         mainMenu = new MainMenu();
                         break;
-                    case "CustomersMenu":
+                    case MenuType.CustomersMenu:
                         mainMenu = new CustomersMenu();
                         break;
-                    case "CustomersInfo":
+                    case MenuType.CustomersInfo:
                         System.Console.WriteLine("Enter Your Name: ");
                         string name = Console.ReadLine();
                         Console.WriteLine("Enter Your Address: ");
@@ -60,15 +60,14 @@ namespace SSDUI
                         System.Console.WriteLine("----------------------------------------");
                         mainMenu = new CustomersMenu();
                         break;
-
-                    case "PrintListOfCustomer":
+                    case MenuType.PrintListOfCustomer:
                         System.Console.WriteLine("Number of customers in the list: " + ListOfCustomers.Count);
                         for (int i = 0; i < ListOfCustomers.Count; i++)
                         {
                             System.Console.WriteLine(ListOfCustomers[i].ToString());
                         };
                         break;
-                    case "Exit":
+                    case MenuType.Exit:
                         repeat = false;
                         break;                    
                     default:

@@ -13,18 +13,21 @@ namespace SSDUI
             System.Console.WriteLine("[0] Main Menu");
         }
 
-        public string YourChoice()
+        public MenuType YourChoice()
         {
             string userChoice = Console.ReadLine();
 
             switch (userChoice)
             {
                 case "0":
-                    return "MainMenu";
+                    return MenuType.MainMenu;
                 case "1":
-                    return "CustomersInfo";
+                    return MenuType.CustomersInfo;
                 default:
-                    return "Unknown";
+                    Console.WriteLine("Input was not correct");
+                    Console.WriteLine("Press Enter to continue");
+                    Console.ReadLine();
+                    return MenuType.CustomersMenu;
             } 
             
         }

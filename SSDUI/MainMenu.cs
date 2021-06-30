@@ -13,20 +13,23 @@ namespace SSDUI
             System.Console.WriteLine("[0] Exit");
         }
 
-        public string YourChoice()
+        public MenuType YourChoice()
         {
             string userInput = Console.ReadLine();
 
             switch (userInput)
             {
                 case "0":
-                    return "Exit";
+                    return MenuType.Exit;
                 case "1":
-                    return "CustomersMenu";
+                    return MenuType.CustomersMenu;
                 case "2":
-                    return "PrintListOfCustomer";
+                    return MenuType.PrintListOfCustomer;
                 default:
-                    return "Unknown";
+                    Console.WriteLine("Input was not correct");
+                    Console.WriteLine("Press Enter to continue");
+                    Console.ReadLine();
+                    return MenuType.MainMenu;
             }
         }
     }   
