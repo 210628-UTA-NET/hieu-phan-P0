@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "SSDUI/1.0.0": {
+        "dependencies": {
+          "SSDModel": "1.0.0"
+        },
+        "runtime": {
+          "SSDUI.dll": {}
+        }
+      },
+      "SSDModel/1.0.0": {
+        "runtime": {
+          "SSDModel.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SSDUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SSDModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
