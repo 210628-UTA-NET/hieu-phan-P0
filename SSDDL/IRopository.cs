@@ -16,6 +16,6 @@ namespace SSDDL
         /// <returns></returns>
         bool WriteCustomerToFile(Customers p_customer);
 
-        
+        List<Customers> ReadListOfCustomersFromFile();
     }
 }

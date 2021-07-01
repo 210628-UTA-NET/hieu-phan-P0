@@ -15,8 +15,14 @@ namespace SSDUI
         }
         public void Menu()
         {
+            System.Console.WriteLine("------------------------------------------");
             Customers customer = _customer.CreateCustomer();
-            System.Console.WriteLine(_customer.SendCustomer(customer));
+            if (_customer.SendCustomer(customer))
+            {
+                System.Console.WriteLine("------------------------------------------");
+                System.Console.WriteLine("The Customer Has Been Added Succesfully!!!");
+                System.Console.WriteLine("------------------------------------------");
+            }
             
             System.Console.WriteLine("[0] Main Menu");
             System.Console.WriteLine("[1] Customer Menu");

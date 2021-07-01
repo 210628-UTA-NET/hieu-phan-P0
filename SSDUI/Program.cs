@@ -63,13 +63,13 @@ namespace SSDUI
                         // mainMenu = new CustomersMenu();
                         mainMenu = new AddCustomerMenu(new CustomerBL(new Repository()));
                         break;
-                    case MenuType.PrintListOfCustomer:
-                        System.Console.WriteLine("Number of customers in the list: " + ListOfCustomers.Count);
-                        for (int i = 0; i < ListOfCustomers.Count; i++)
-                        {
-                            System.Console.WriteLine(ListOfCustomers[i].ToString());
-                        };
-                        break;
+                    // case MenuType.PrintListOfCustomer:
+                    //     System.Console.WriteLine("Number of customers in the list: " + ListOfCustomers.Count);
+                    //     for (int i = 0; i < ListOfCustomers.Count; i++)
+                    //     {
+                    //         System.Console.WriteLine(ListOfCustomers[i].ToString());
+                    //     };
+                    //     break;
                     case MenuType.Exit:
                         repeat = false;
                         break;                    
