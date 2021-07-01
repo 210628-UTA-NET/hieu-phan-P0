@@ -16,5 +16,12 @@ namespace SSDBL
         /// <returns>a customer object</returns>
         Customers CreateCustomer();
 
+        /// <summary>
+        /// The method will then send the customer to repository to be written to file
+        /// return true if the attempt is successful
+        /// </summary>
+        /// <param name="p_customer"></param>
+        /// <returns></returns>
+        bool SendCustomer(Customers p_customer);
     }
 }

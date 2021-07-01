@@ -4,7 +4,7 @@ namespace SSDUI
     {
         MainMenu,
         CustomersMenu,
-        CustomersInfo,
+        AddCustomerMenu,
         PrintListOfCustomer,
         Exit
     }

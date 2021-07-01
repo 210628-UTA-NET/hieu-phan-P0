@@ -7,9 +7,9 @@ namespace SSDDL
 {
     public class Repository : IRepository
     {
-        private const string _filePath = "./DataBase/Customers.json";
+        private const string _filePath = "./../SSDDL/DataBase/Customers.json";
         private string _jsonString;
-        public bool AddCustomer(Customers p_customer)
+        public bool WriteCustomerToFile(Customers p_customer)
         {
             // Read all the customers from json file then add new customer then write to json file -- to keep json file from being overriden
             try

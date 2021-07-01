@@ -16,6 +16,12 @@ namespace SSDBL
         {
             _repo = p_repo;
         }
+
+        public bool SendCustomer(Customers p_customer)
+        {
+            return _repo.WriteCustomerToFile(p_customer);
+        }
+
         public Customers CreateCustomer()
         {
             System.Console.WriteLine("Enter Your Name: ");

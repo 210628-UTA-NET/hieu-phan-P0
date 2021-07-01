@@ -46,21 +46,22 @@ namespace SSDUI
                     case MenuType.CustomersMenu:
                         mainMenu = new CustomersMenu();
                         break;
-                    case MenuType.CustomersInfo:
-                        System.Console.WriteLine("Enter Your Name: ");
-                        string name = Console.ReadLine();
-                        Console.WriteLine("Enter Your Address: ");
-                        string address = Console.ReadLine();
-                        System.Console.WriteLine("Enter You Email: ");
-                        string email = Console.ReadLine();
-                        System.Console.WriteLine("Enter Your Phone Number: ");
-                        string phone = Console.ReadLine();
-                        Customers customer = new Customers(name,address,email,phone);
-                        ListOfCustomers.Add(customer);
-                        System.Console.WriteLine("----------------------------------------");
-                        System.Console.WriteLine("Customer has been succesfully registered");
-                        System.Console.WriteLine("----------------------------------------");
-                        mainMenu = new CustomersMenu();
+                    case MenuType.AddCustomerMenu:
+                        // System.Console.WriteLine("Enter Your Name: ");
+                        // string name = Console.ReadLine();
+                        // Console.WriteLine("Enter Your Address: ");
+                        // string address = Console.ReadLine();
+                        // System.Console.WriteLine("Enter You Email: ");
+                        // string email = Console.ReadLine();
+                        // System.Console.WriteLine("Enter Your Phone Number: ");
+                        // string phone = Console.ReadLine();
+                        // Customers customer = new Customers(name,address,email,phone);
+                        // ListOfCustomers.Add(customer);
+                        // System.Console.WriteLine("----------------------------------------");
+                        // System.Console.WriteLine("Customer has been succesfully registered");
+                        // System.Console.WriteLine("----------------------------------------");
+                        // mainMenu = new CustomersMenu();
+                        mainMenu = new AddCustomerMenu(new CustomerBL(new Repository()));
                         break;
                     case MenuType.PrintListOfCustomer:
                         System.Console.WriteLine("Number of customers in the list: " + ListOfCustomers.Count);
