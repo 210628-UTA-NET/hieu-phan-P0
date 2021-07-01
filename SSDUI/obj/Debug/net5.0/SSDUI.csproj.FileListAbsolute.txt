@@ -17,3 +17,7 @@ C:\Users\hieug\OneDrive\Revature\CoreC#\Store App SSD\SSDUI\obj\Debug\net5.0\SSD
 C:\Users\hieug\OneDrive\Revature\CoreC#\Store App SSD\SSDUI\obj\Debug\net5.0\ref\SSDUI.dll
 C:\Users\hieug\OneDrive\Revature\CoreC#\Store App SSD\SSDUI\obj\Debug\net5.0\SSDUI.pdb
 C:\Users\hieug\OneDrive\Revature\CoreC#\Store App SSD\SSDUI\obj\Debug\net5.0\SSDUI.genruntimeconfig.cache
+C:\Users\hieug\OneDrive\Revature\CoreC#\Store App SSD\SSDUI\bin\Debug\net5.0\SSDBL.dll
+C:\Users\hieug\OneDrive\Revature\CoreC#\Store App SSD\SSDUI\bin\Debug\net5.0\SSDDL.dll
+C:\Users\hieug\OneDrive\Revature\CoreC#\Store App SSD\SSDUI\bin\Debug\net5.0\SSDBL.pdb
+C:\Users\hieug\OneDrive\Revature\CoreC#\Store App SSD\SSDUI\bin\Debug\net5.0\SSDDL.pdb

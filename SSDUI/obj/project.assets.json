@@ -2,6 +2,32 @@
   "version": 3,
   "targets": {
     "net5.0": {
+      "SSDBL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "SSDModel": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SSDBL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SSDBL.dll": {}
+        }
+      },
+      "SSDDL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "SSDModel": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SSDDL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SSDDL.dll": {}
+        }
+      },
       "SSDModel/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -15,6 +41,16 @@
     }
   },
   "libraries": {
+    "SSDBL/1.0.0": {
+      "type": "project",
+      "path": "../SSDBL/SSDBL.csproj",
+      "msbuildProject": "../SSDBL/SSDBL.csproj"
+    },
+    "SSDDL/1.0.0": {
+      "type": "project",
+      "path": "../SSDDL/SSDDL.csproj",
+      "msbuildProject": "../SSDDL/SSDDL.csproj"
+    },
     "SSDModel/1.0.0": {
       "type": "project",
       "path": "../SSDModel/SSDModel.csproj",
@@ -23,6 +59,8 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "SSDBL >= 1.0.0",
+      "SSDDL >= 1.0.0",
       "SSDModel >= 1.0.0"
     ]
   },
@@ -51,6 +89,12 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "C:\\Users\\hieug\\OneDrive\\Revature\\CoreC#\\Store App SSD\\SSDBL\\SSDBL.csproj": {
+              "projectPath": "C:\\Users\\hieug\\OneDrive\\Revature\\CoreC#\\Store App SSD\\SSDBL\\SSDBL.csproj"
+            },
+            "C:\\Users\\hieug\\OneDrive\\Revature\\CoreC#\\Store App SSD\\SSDDL\\SSDDL.csproj": {
+              "projectPath": "C:\\Users\\hieug\\OneDrive\\Revature\\CoreC#\\Store App SSD\\SSDDL\\SSDDL.csproj"
+            },
             "C:\\Users\\hieug\\OneDrive\\Revature\\CoreC#\\Store App SSD\\SSDModel\\SSDModel.csproj": {
               "projectPath": "C:\\Users\\hieug\\OneDrive\\Revature\\CoreC#\\Store App SSD\\SSDModel\\SSDModel.csproj"
             }

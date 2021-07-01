@@ -2,12 +2,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SSDModel\SSDModel.csproj" />
-    <ProjectReference Include="..\SSDBL\SSDBL.csproj" />
-    <ProjectReference Include="..\SSDDL\SSDDL.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 

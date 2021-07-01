@@ -31,7 +31,8 @@ namespace SSDModel
 
         public override string ToString()
         {
-            return "Customer: " + _name + " | " + _address + " | " + _email + " | " + _phone + "\nNumber of order: " + ListOfOrders.Count;
+            // return "Customer: " + _name + " | " + _address + " | " + _email + " | " + _phone + "\nNumber of order: " + ListOfOrders.Count;
+            return $"Name: {Name}, Address: {Address}, Email: {Email}, Phone: {Phone}";
         }
 
         public void AddToListOfOrders(Orders p_order)
