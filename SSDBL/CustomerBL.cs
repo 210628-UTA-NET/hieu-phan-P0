@@ -24,13 +24,13 @@ namespace SSDBL
 
         public Customers CreateCustomer()
         {
-            System.Console.WriteLine("Enter Your Name: ");
+            System.Console.WriteLine("Enter Customer's Name: ");
             string name = Console.ReadLine();
-            Console.WriteLine("Enter Your Address: ");
+            Console.WriteLine("Enter Customer's Address: ");
             string address = Console.ReadLine();
-            System.Console.WriteLine("Enter You Email: ");
+            System.Console.WriteLine("Enter Customer's Email: ");
             string email = Console.ReadLine();
-            System.Console.WriteLine("Enter Your Phone Number: ");
+            System.Console.WriteLine("Enter Customer's Phone Number: ");
             string phone = Console.ReadLine();
             return new Customers(name,address,email,phone);
         }
