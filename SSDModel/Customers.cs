@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using System.ComponentModel.DataAnnotations;
 
 namespace SSDModel
 {
@@ -14,17 +13,16 @@ namespace SSDModel
 
         
 
-        public Customers(string p_name, string p_address, string p_email, string p_phone)
-        {
-            Name = p_name;
-            Address = p_address;
-            Email = p_email;
-            Phone = p_phone;
-        }
+        // public Customers(string p_name, string p_address, string p_email, string p_phone)
+        // {
+        //     Name = p_name;
+        //     Address = p_address;
+        //     Email = p_email;
+        //     Phone = p_phone;
+        // }
 
         public Customers()
         {
-
         }
 
         // RegEx can be added here
@@ -63,7 +61,7 @@ namespace SSDModel
         //     }
         // }
         
-        public List<Orders> ListOfOrders { get => _listOfOrders; }
+        // public List<Orders> ListOfOrders { get => _listOfOrders; }
 
 
         public override string ToString()
@@ -72,10 +70,10 @@ namespace SSDModel
             return $"Name: {Name}, Address: {Address}, Email: {Email}, Phone: {Phone}";
         }
 
-        public void AddToListOfOrders(Orders p_order)
-        {
-            ListOfOrders.Add(p_order);
-        }
+        // public void AddToListOfOrders(Orders p_order)
+        // {
+        //     ListOfOrders.Add(p_order);
+        // }
         
     }
 }

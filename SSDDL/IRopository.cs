@@ -14,8 +14,8 @@ namespace SSDDL
         /// </summary>
         /// <param name="p_customer">this is the customer obj that will be added to the database</param>
         /// <returns></returns>
-        bool WriteCustomerToFile(Customers p_customer);
+        bool AddCustomer(Customers p_customer);
 
-        List<Customers> ReadListOfCustomersFromFile();
+        List<Customers> GetAllCustomers();
     }
 }

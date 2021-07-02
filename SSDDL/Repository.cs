@@ -10,7 +10,7 @@ namespace SSDDL
         private const string _filePath = "./../SSDDL/DataBase/Customers.json";
         private string _jsonString;
 
-        public List<Customers> ReadListOfCustomersFromFile()
+        public List<Customers> GetAllCustomers()
         {
             try
             {
@@ -24,19 +24,9 @@ namespace SSDDL
             return JsonSerializer.Deserialize<List<Customers>>(_jsonString);
         }
 
-        public bool WriteCustomerToFile(Customers p_customer)
+        public bool AddCustomer(Customers p_customer)
         {
-            // try
-            // {
-            //     _jsonString = File.ReadAllText(_filePath);
-            // }
-            // catch (System.Exception)
-            // {
-            //     throw new System.Exception("File path is invalid");
-            // }
-            
-            // List<Customers> listOfCustomers = JsonSerializer.Deserialize<List<Customers>>(_jsonString);
-            List<Customers> listOfCustomers = ReadListOfCustomersFromFile();
+            List<Customers> listOfCustomers = this.GetAllCustomers();
             listOfCustomers.Add(p_customer);
             _jsonString = JsonSerializer.Serialize(listOfCustomers, new JsonSerializerOptions{ WriteIndented = true});
             File.WriteAllText(_filePath,_jsonString);

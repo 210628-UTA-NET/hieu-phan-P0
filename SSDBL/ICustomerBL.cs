@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SSDModel;
 
 namespace SSDBL
@@ -11,10 +12,10 @@ namespace SSDBL
     public interface ICustomerBL
     {
         /// <summary>
-        /// When the write menu is press, a customer will be created using user inputs
+        /// get all customers from database
         /// </summary>
-        /// <returns>a customer object</returns>
-        Customers CreateCustomer();
+        /// <returns>return a list of restaurant</returns>
+        List<Customers> GetAllCustomers();
 
         /// <summary>
         /// The method will then send the customer to repository to be written to file
@@ -22,6 +23,13 @@ namespace SSDBL
         /// </summary>
         /// <param name="p_customer"></param>
         /// <returns></returns>
-        bool SendCustomer(Customers p_customer);
+        bool AddCustomer(Customers p_customer);
+        
+        /// <summary>
+        /// When the write menu is press, a customer will be created using user inputs
+        /// </summary>
+        /// <returns>a customer object</returns>
+
+        
     }
 }
