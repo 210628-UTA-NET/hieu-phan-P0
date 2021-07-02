@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations;
+
 namespace SSDModel
 {
     public class Customers{
@@ -21,14 +24,47 @@ namespace SSDModel
 
         public Customers()
         {
+
         }
 
         // RegEx can be added here
         public string Name { get => _name; set => _name = value; }
+        
+        // public string Name { 
+        //     get
+        //     {
+        //         return _name;
+        //     }
+        //     set 
+        //     {
+        //         if (!Regex.IsMatch(value,@"^[A-Za-z .]+$"))
+        //         {
+        //             throw new Exception("This Field can only contain letters");
+        //         }
+        //         _name = value;
+        //     }
+        // }
+        
         public string Address { get => _address; set => _address = value; }
         public string Email { get => _email; set => _email = value; }
         public string Phone { get => _phone; set => _phone = value; }
+        // public string Phone { 
+        //     get
+        //     {
+        //         return _phone;
+        //     } 
+        //     set 
+        //     {
+        //         if(!Regex.IsMatch(value,@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}"))
+        //         {
+        //             throw new Exception("Number is not valid");
+        //         }
+        //         _phone = value;
+        //     }
+        // }
+        
         public List<Orders> ListOfOrders { get => _listOfOrders; }
+
 
         public override string ToString()
         {

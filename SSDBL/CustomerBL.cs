@@ -1,6 +1,7 @@
 using System;
 using SSDModel;
 using SSDDL;
+using System.Text.RegularExpressions;
 
 namespace SSDBL
 {
@@ -24,15 +25,46 @@ namespace SSDBL
 
         public Customers CreateCustomer()
         {
-            System.Console.WriteLine("Enter Customer's Name: ");
-            string name = Console.ReadLine();
+            string name;
+            string address;
+            string email;
+            string phone;
+            Customers customer = null;
+
+            System.Console.WriteLine("Enter Customer's Name: ");            
+            name = Console.ReadLine();
+            while(!Regex.IsMatch(name,@"^[A-Za-z .]+$"))
+            {
+                System.Console.WriteLine("Attention: This field can only contain letters");
+                System.Console.WriteLine("Re-enter Customer's Name: ");
+                name = Console.ReadLine();
+            }
+
             Console.WriteLine("Enter Customer's Address: ");
-            string address = Console.ReadLine();
+            address = Console.ReadLine();
             System.Console.WriteLine("Enter Customer's Email: ");
-            string email = Console.ReadLine();
+            email = Console.ReadLine();
             System.Console.WriteLine("Enter Customer's Phone Number: ");
-            string phone = Console.ReadLine();
-            return new Customers(name,address,email,phone);
+            
+            phone = Console.ReadLine();
+            while(!Regex.IsMatch(phone,@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}"))
+            {
+                System.Console.WriteLine("Attention: This field can only contain 10 digits");
+                System.Console.WriteLine("Re-enter Customer's Phone: ");
+                phone = Console.ReadLine();
+            }
+
+            try
+            {
+                customer = new Customers(name,address,email,phone);                
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine("somethingwrong");
+                System.Console.WriteLine(e);
+            }
+            
+            return customer;
         }
     }
 }
