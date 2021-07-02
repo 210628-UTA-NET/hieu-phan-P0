@@ -91,5 +91,12 @@
     "Email": "asd",
     "Phone": "1236547890",
     "ListOfOrders": []
+  },
+  {
+    "Name": "qweqwe",
+    "Address": "qwe",
+    "Email": "qwe",
+    "Phone": "1234567900",
+    "ListOfOrders": []
   }
 ]

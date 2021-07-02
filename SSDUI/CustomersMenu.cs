@@ -9,7 +9,7 @@ namespace SSDUI
             System.Console.WriteLine("----------------------------------------");
             System.Console.WriteLine("Welcome to Customer Menu!");
             System.Console.WriteLine("What would you like to do?");
-            System.Console.WriteLine("[0] Main Menu1");
+            System.Console.WriteLine("[0] Main Menu");
             System.Console.WriteLine("[1] Add Customer");
         }
 

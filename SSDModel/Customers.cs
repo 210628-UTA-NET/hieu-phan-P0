@@ -28,22 +28,22 @@ namespace SSDModel
         }
 
         // RegEx can be added here
-        public string Name { get => _name; set => _name = value; }
+        // public string Name { get => _name; set => _name = value; }
         
-        // public string Name { 
-        //     get
-        //     {
-        //         return _name;
-        //     }
-        //     set 
-        //     {
-        //         if (!Regex.IsMatch(value,@"^[A-Za-z .]+$"))
-        //         {
-        //             throw new Exception("This Field can only contain letters");
-        //         }
-        //         _name = value;
-        //     }
-        // }
+        public string Name { 
+            get
+            {
+                return _name;
+            }
+            set 
+            {
+                if (!Regex.IsMatch(value,@"^[A-Za-z .]+$"))
+                {
+                    throw new Exception("This Field can only contain letters");
+                }
+                _name = value;
+            }
+        }
         
         public string Address { get => _address; set => _address = value; }
         public string Email { get => _email; set => _email = value; }
