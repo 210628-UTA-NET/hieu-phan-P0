@@ -1,19 +1,18 @@
 using System;
 using SSDModel;
 using SSDBL;
-using SSDDL;
 using System.Text.RegularExpressions;
 
 namespace SSDUI
 {
     public class AddCustomerMenu : IMenu
     {
-        private static Customers _customer = new Customers();
+        private static Customers _newCustomer = new Customers();
         private ICustomerBL _customerBL;
 
-        public AddCustomerMenu(ICustomerBL p_customer)
+        public AddCustomerMenu(ICustomerBL p_customerBL)
         {
-            _customerBL = p_customer;
+            _customerBL = p_customerBL;
         }
         public void Menu()
         {
@@ -29,10 +28,23 @@ namespace SSDUI
 
             Console.WriteLine("Enter Customer's Address: ");
             string address = Console.ReadLine();
+            while(!Regex.IsMatch(address,@"^[A-Za-z0-9 .,-]+$"))
+            {
+                System.Console.WriteLine("Attention: This address is not valid");
+                System.Console.WriteLine("Re-enter Customer's Address: ");
+                address = Console.ReadLine();
+            }
+
             System.Console.WriteLine("Enter Customer's Email: ");
             string email = Console.ReadLine();
-            System.Console.WriteLine("Enter Customer's Phone Number: ");
-            
+            while(!Regex.IsMatch(email,@"^[A-Za-z0-9.]@[A-Za-z0-9.]+$"))
+            {
+                System.Console.WriteLine("Attention: This email is not valid");
+                System.Console.WriteLine("Re-enter Customer's Email: ");
+                email = Console.ReadLine();
+            }
+
+            System.Console.WriteLine("Enter Customer's Phone Number: ");            
             string phone = Console.ReadLine();
             while(!Regex.IsMatch(phone,@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}"))
             {
@@ -41,23 +53,15 @@ namespace SSDUI
                 phone = Console.ReadLine();
             }
 
-
-            _customer.Name = name;
-            _customer.Address = address;
-            _customer.Email = email;
-            _customer.Phone = phone;
+            _newCustomer.Name = name;
+            _newCustomer.Address = address;
+            _newCustomer.Email = email;
+            _newCustomer.Phone = phone;
 
             System.Console.WriteLine("--------------------------------------------------");
             System.Console.WriteLine("The information of the customer you just enter is:");
-            System.Console.WriteLine(_customer.ToString());
+            System.Console.WriteLine(_newCustomer.ToString());
             System.Console.WriteLine("--------------------------------------------------");
-
-            // if (_customerBL.AddCustomer(_customer))
-            // {
-            //     System.Console.WriteLine("------------------------------------------");
-            //     System.Console.WriteLine("The Customer Has Been Added Succesfully!!!");
-            //     System.Console.WriteLine("------------------------------------------");
-            // }
             
             System.Console.WriteLine("[3] Add Customer");
             System.Console.WriteLine("[2] Re-enter Customer Info");
@@ -79,8 +83,15 @@ namespace SSDUI
                 case "2":
                     return MenuType.AddCustomerMenu;
                 case "3":
-                    _customerBL.AddCustomer(_customer);
-                    return MenuType.AddCustomerMenu;
+                    try{
+                    _customerBL.AddCustomer(_newCustomer);
+                    }
+                    catch (System.Exception e)
+                    {
+                        System.Console.WriteLine("Cannot Add Customer");
+                        System.Console.WriteLine(e);
+                    }
+                    return MenuType.CustomersMenu;
                 default:
                     Console.WriteLine("Input was not correct");
                     Console.WriteLine("Press Enter to continue");

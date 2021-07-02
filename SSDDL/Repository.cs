@@ -24,13 +24,13 @@ namespace SSDDL
             return JsonSerializer.Deserialize<List<Customers>>(_jsonString);
         }
 
-        public bool AddCustomer(Customers p_customer)
+        public Customers AddCustomer(Customers p_customer)
         {
             List<Customers> listOfCustomers = this.GetAllCustomers();
             listOfCustomers.Add(p_customer);
             _jsonString = JsonSerializer.Serialize(listOfCustomers, new JsonSerializerOptions{ WriteIndented = true});
             File.WriteAllText(_filePath,_jsonString);
-            return true;
+            return p_customer;
         }
     }
 }

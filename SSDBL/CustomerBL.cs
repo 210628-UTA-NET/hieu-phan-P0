@@ -24,9 +24,10 @@ namespace SSDBL
             return _repo.GetAllCustomers();
         }
 
-        public bool AddCustomer(Customers p_customer)
+        public Customers AddCustomer(Customers p_customer)
         {
-            return _repo.AddCustomer(p_customer);
+            _repo.AddCustomer(p_customer);
+            return p_customer;
         }
         
     }

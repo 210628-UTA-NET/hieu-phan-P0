@@ -1,76 +1,11 @@
 [
   {
-    "Name": null,
-    "Address": null,
-    "Email": null,
-    "Phone": null,
-    "ListOfOrders": []
-  },
-  {
-    "Name": "qwe",
-    "Address": "asd",
-    "Email": "qwe",
-    "Phone": "asd",
-    "ListOfOrders": []
-  },
-  {
-    "Name": "qwe",
-    "Address": "qwe",
-    "Email": "123",
-    "Phone": "123",
-    "ListOfOrders": []
-  },
-  {
-    "Name": "qwe",
-    "Address": "asd",
-    "Email": "zxc",
-    "Phone": "123",
-    "ListOfOrders": []
-  },
-  {
-    "Name": "jaja",
-    "Address": "qwe",
-    "Email": "qwe",
-    "Phone": "qwe",
-    "ListOfOrders": []
-  },
-  {
-    "Name": "askjdklsadj",
-    "Address": "@sadkdj",
-    "Email": "qweasdklj",
-    "Phone": "123214",
-    "ListOfOrders": []
-  },
-  {
-    "Name": "sjakldjaslk",
-    "Address": "qweaflk",
-    "Email": "sadjsa;ld",
-    "Phone": "1234",
-    "ListOfOrders": []
-  },
-  {
     "Name": "qwe",
     "Address": "qwe",
     "Email": "qwe",
     "Phone": "1234567890",
     "ListOfOrders": []
   },
-  {
-    "Name": "123213",
-    "Address": "qwe",
-    "Email": "qwe",
-    "Phone": "1234567890",
-    "ListOfOrders": []
-  },
-  {
-    "Name": "123",
-    "Address": "123",
-    "Email": "213",
-    "Phone": "qwe",
-    "ListOfOrders": []
-  },
-  null,
-  null,
   {
     "Name": "qwe",
     "Address": "qwe",
@@ -97,6 +32,27 @@
     "Address": "qwe",
     "Email": "qwe",
     "Phone": "1234567900",
+    "ListOfOrders": []
+  },
+  {
+    "Name": "qwe qwe qwe",
+    "Address": "qwe",
+    "Email": "qwe",
+    "Phone": "1234567890",
+    "ListOfOrders": []
+  },
+  {
+    "Name": "qwe qwe qwe",
+    "Address": "qwe",
+    "Email": "qwe",
+    "Phone": "1234567890",
+    "ListOfOrders": []
+  },
+  {
+    "Name": "qwe",
+    "Address": "qwe",
+    "Email": "qwe",
+    "Phone": "1234567890",
     "ListOfOrders": []
   }
 ]

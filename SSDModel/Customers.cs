@@ -13,21 +13,22 @@ namespace SSDModel
 
         
 
-        // public Customers(string p_name, string p_address, string p_email, string p_phone)
-        // {
-        //     Name = p_name;
-        //     Address = p_address;
-        //     Email = p_email;
-        //     Phone = p_phone;
-        // }
+        public Customers(string p_name, string p_address, string p_email, string p_phone)
+        {
+            Name = p_name;
+            Address = p_address;
+            Email = p_email;
+            Phone = p_phone;
+        }
 
         public Customers()
         {
         }
+        // public Customers()
+        // {
+        // }
 
-        // RegEx can be added here
-        // public string Name { get => _name; set => _name = value; }
-        
+        // RegEx can be added here       
         public string Name { 
             get
             {
@@ -43,25 +44,26 @@ namespace SSDModel
             }
         }
         
+
         public string Address { get => _address; set => _address = value; }
         public string Email { get => _email; set => _email = value; }
-        public string Phone { get => _phone; set => _phone = value; }
-        // public string Phone { 
-        //     get
-        //     {
-        //         return _phone;
-        //     } 
-        //     set 
-        //     {
-        //         if(!Regex.IsMatch(value,@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}"))
-        //         {
-        //             throw new Exception("Number is not valid");
-        //         }
-        //         _phone = value;
-        //     }
-        // }
-        
-        // public List<Orders> ListOfOrders { get => _listOfOrders; }
+
+        public string Phone { 
+            get
+            {
+                return _phone;
+            } 
+            set 
+            {
+                if(!Regex.IsMatch(value,@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}"))
+                {
+                    throw new Exception("Number is not valid");
+                }
+                _phone = value;
+            }
+        }
+
+        public List<Orders> ListOfOrders { get => _listOfOrders; }
 
 
         public override string ToString()

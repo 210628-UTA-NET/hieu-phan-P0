@@ -23,7 +23,7 @@ namespace SSDBL
         /// </summary>
         /// <param name="p_customer"></param>
         /// <returns></returns>
-        bool AddCustomer(Customers p_customer);
+        Customers AddCustomer(Customers p_customer);
         
         /// <summary>
         /// When the write menu is press, a customer will be created using user inputs
