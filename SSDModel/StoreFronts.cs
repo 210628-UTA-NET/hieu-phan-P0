@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 namespace SSDModel
 {
-    public class StoreFront {
+    public class StoreFronts {
         private string _name;
         private string _address;
-        private List<string> _inventory = new List<string>();
-        public StoreFront()
+        private List<Products> _inventory = new List<Products>();
+        public StoreFronts()
         {
             
         }
 
         public string Name { get => _name; set => _name = value; }
         public string Address { get => _address; set => _address = value; }
-        public List<string> Inventory { get => _inventory; }
+        public List<Products> Inventory { get => _inventory; }
 
-        public void Add(string item) {
-            _inventory.Add(item);
+        public void Add(Products _item) {
+            _inventory.Add(_item);
         }
 
         // need to create a remove method

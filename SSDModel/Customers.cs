@@ -5,7 +5,8 @@ using System.Text.RegularExpressions;
 namespace SSDModel
 {
     public class Customers{
-        private string _name;
+        private string _fname;
+        private string _lname;
         private string _address;
         private string _email;
         private string _phone;
@@ -13,37 +14,49 @@ namespace SSDModel
 
         
 
-        public Customers(string p_name, string p_address, string p_email, string p_phone)
-        {
-            Name = p_name;
-            Address = p_address;
-            Email = p_email;
-            Phone = p_phone;
-        }
+        // public Customers(string p_name, string p_address, string p_email, string p_phone)
+        // {
+        //     Name = p_name;
+        //     Address = p_address;
+        //     Email = p_email;
+        //     Phone = p_phone;
+        // }
 
         public Customers()
         {
         }
-        // public Customers()
-        // {
-        // }
+
 
         // RegEx can be added here       
-        public string Name { 
+        public string Fname { 
             get
             {
-                return _name;
+                return _fname;
             }
             set 
             {
-                if (!Regex.IsMatch(value,@"^[A-Za-z .]+$"))
+                if (!Regex.IsMatch(value,@"^[A-Za-z .']+$"))
                 {
                     throw new Exception("This Field can only contain letters");
                 }
-                _name = value;
+                _fname = value;
             }
         }
         
+        public string Lname { 
+            get
+            {
+                return _lname;
+            }
+            set 
+            {
+                if (!Regex.IsMatch(value,@"^[A-Za-z .']+$"))
+                {
+                    throw new Exception("This Field can only contain letters");
+                }
+                _lname = value;
+            } 
+        }
 
         public string Address { get => _address; set => _address = value; }
         public string Email { get => _email; set => _email = value; }
@@ -69,7 +82,7 @@ namespace SSDModel
         public override string ToString()
         {
             // return "Customer: " + _name + " | " + _address + " | " + _email + " | " + _phone + "\nNumber of order: " + ListOfOrders.Count;
-            return $"Name: {Name}, Address: {Address}, Email: {Email}, Phone: {Phone}";
+            return $"First Name: {Fname} ||| Last Name: {Lname} ||| Address: {Address} ||| Email: {Email} ||| Phone: {Phone}";
         }
 
         // public void AddToListOfOrders(Orders p_order)

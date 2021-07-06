@@ -17,13 +17,22 @@ namespace SSDUI
         public void Menu()
         {
             System.Console.WriteLine("------------------------------------------");
-            System.Console.WriteLine("Enter Customer's Name: ");            
-            string name = Console.ReadLine();
-            while(!Regex.IsMatch(name,@"^[A-Za-z .]+$"))
+            System.Console.WriteLine("Enter Customer's First Name: ");            
+            string fname = Console.ReadLine();
+            while(!Regex.IsMatch(fname,@"^[A-Za-z .]+$"))
             {
                 System.Console.WriteLine("Attention: This field can only contain letters");
-                System.Console.WriteLine("Re-enter Customer's Name: ");
-                name = Console.ReadLine();
+                System.Console.WriteLine("Re-enter Customer's First Name: ");
+                fname = Console.ReadLine();
+            }
+
+            System.Console.WriteLine("Enter Customer's Last Name: ");            
+            string lname = Console.ReadLine();
+            while(!Regex.IsMatch(lname,@"^[A-Za-z .]+$"))
+            {
+                System.Console.WriteLine("Attention: This field can only contain letters");
+                System.Console.WriteLine("Re-enter Customer's Last Name: ");
+                lname = Console.ReadLine();
             }
 
             Console.WriteLine("Enter Customer's Address: ");
@@ -37,7 +46,7 @@ namespace SSDUI
 
             System.Console.WriteLine("Enter Customer's Email: ");
             string email = Console.ReadLine();
-            while(!Regex.IsMatch(email,@"^[A-Za-z0-9.]@[A-Za-z0-9.]+$"))
+            while(!Regex.IsMatch(email,@"^[A-Za-z0-9.@]+$"))
             {
                 System.Console.WriteLine("Attention: This email is not valid");
                 System.Console.WriteLine("Re-enter Customer's Email: ");
@@ -53,7 +62,8 @@ namespace SSDUI
                 phone = Console.ReadLine();
             }
 
-            _newCustomer.Name = name;
+            _newCustomer.Fname = fname;
+            _newCustomer.Lname = lname;
             _newCustomer.Address = address;
             _newCustomer.Email = email;
             _newCustomer.Phone = phone;
@@ -91,6 +101,7 @@ namespace SSDUI
                         System.Console.WriteLine("Cannot Add Customer");
                         System.Console.WriteLine(e);
                     }
+                    System.Console.WriteLine("Customer was entered succesfully!!!");
                     return MenuType.CustomersMenu;
                 default:
                     Console.WriteLine("Input was not correct");

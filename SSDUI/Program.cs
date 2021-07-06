@@ -32,11 +32,20 @@ namespace SSDUI
                     case MenuType.AddCustomerMenu:
                         storeMenu = menuFactory.GetMenu(MenuType.AddCustomerMenu);
                         break;
+                    case MenuType.SearchCustomerMenu:
+                        storeMenu = menuFactory.GetMenu(MenuType.SearchCustomerMenu);
+                        break;
+                    case MenuType.StoreFrontsMenu:
+                        storeMenu = menuFactory.GetMenu(MenuType.StoreFrontsMenu);
+                        break;
+                    case MenuType.SearchStoreFrontMenu:
+                        storeMenu = menuFactory.GetMenu(MenuType.SearchStoreFrontMenu);
+                        break;
                     case MenuType.Exit:
                         repeat = false;
                         break;                    
                     default:
-                        Console.WriteLine("Cannot proceed /// Try again");
+                        Console.WriteLine("Cannot proceed ||| Try again");
                         break;
                 }
             }

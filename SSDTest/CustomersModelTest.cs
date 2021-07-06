@@ -15,13 +15,13 @@ namespace SSDTest
         {
             //Arrange
             Customers test = new Customers();
-            string name = "qweas asdd";
+            string fname = "qweas asdd";
             
             //Act
-            test.Name = name;
+            test.Fname = fname;
             
             //Assert
-            Assert.Equal(name, test.Name);
+            Assert.Equal(fname, test.Fname);
         }
 
         /// <summary>
@@ -32,13 +32,13 @@ namespace SSDTest
         [Theory]
         [InlineData("qwe123")]
         [InlineData("qwe!@#@!#")]
-        public void CityShouldNotSetInvalidData(string input)
+        public void FnameShouldNotSetInvalidData(string input)
         {
             //Arrange
             Customers test = new Customers();
 
             //Act and Assert together
-            Assert.Throws<Exception>(() => test.Name = input);
+            Assert.Throws<Exception>(() => test.Fname = input);
 
         }
     }

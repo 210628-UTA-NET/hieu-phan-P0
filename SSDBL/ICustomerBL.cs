@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SSDModel;
 
 namespace SSDBL
@@ -26,10 +25,10 @@ namespace SSDBL
         Customers AddCustomer(Customers p_customer);
         
         /// <summary>
-        /// When the write menu is press, a customer will be created using user inputs
+        /// Search customer using a criteria
         /// </summary>
-        /// <returns>a customer object</returns>
-
+        /// <returns>customer list with the same criteria</returns>
+        List<Customers> SearchCustomer(string p_criteria, string p_value);
         
     }
 }

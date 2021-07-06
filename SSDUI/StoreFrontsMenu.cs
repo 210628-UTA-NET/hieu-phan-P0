@@ -1,17 +1,16 @@
 using System;
 
-namespace SSDUI
+namespace SSDUI 
 {
-    public class CustomersMenu : IMenu
+    public class StoreFrontsMenu : IMenu
     {
         public void Menu()
         {
             System.Console.WriteLine("----------------------------------------");
-            System.Console.WriteLine("Welcome to Customer Menu!");
+            System.Console.WriteLine("Welcome to StoreFront Menu!");
             System.Console.WriteLine("What would you like to do?");
             System.Console.WriteLine("[0] Main Menu");
-            System.Console.WriteLine("[1] Add Customer");
-            System.Console.WriteLine("[2] Search Customer");
+            System.Console.WriteLine("[1] Search StoreFront");
         }
 
         public MenuType YourChoice()
@@ -23,9 +22,7 @@ namespace SSDUI
                 case "0":
                     return MenuType.MainMenu;
                 case "1":
-                    return MenuType.AddCustomerMenu;
-                case "2":
-                    return MenuType.SearchCustomerMenu;
+                    return MenuType.SearchStoreFrontMenu;
                 default:
                     Console.WriteLine("Input was not correct");
                     Console.WriteLine("Press Enter to continue");

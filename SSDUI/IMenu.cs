@@ -5,7 +5,9 @@ namespace SSDUI
         MainMenu,
         CustomersMenu,
         AddCustomerMenu,
-        // PrintListOfCustomer,
+        SearchCustomerMenu,
+        StoreFrontsMenu,
+        SearchStoreFrontMenu,
         Exit
     }
     public interface IMenu
