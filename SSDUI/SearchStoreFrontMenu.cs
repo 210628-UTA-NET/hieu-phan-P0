@@ -39,7 +39,6 @@ namespace SSDUI
                     if (ListOfSearchedStoreFront == null)
                     {
                         System.Console.WriteLine("There is no matching result.");
-                        return MenuType.SearchStoreFrontMenu;
                     }
                     else
                     {
@@ -47,11 +46,22 @@ namespace SSDUI
                         {
                             System.Console.WriteLine("[" + i + "]" + " " + ListOfSearchedStoreFront[i].ToString());
                         }
-
-                        System.Console.WriteLine("Here Is The Store Front's Inventory: ");
-                        foreach (Products p in ListOfSearchedStoreFront[0].Inventory)
+                        System.Console.WriteLine("Pick The Store Front's Index To See Its Inventory or -99 For Store Front Menu");
+                        string userChoiceIndex = Console.ReadLine();
+                        while(userChoiceIndex != "-99")
                         {
-                            System.Console.WriteLine(p.ToString());
+                            try
+                            {
+                                foreach (Products p in ListOfSearchedStoreFront[int.Parse(userChoiceIndex)].Inventory)
+                                {
+                                    System.Console.WriteLine(p.ToString());
+                                }
+                            }
+                            catch (System.Exception)
+                            {
+                                System.Console.WriteLine("Something Wrong!!!");
+                            }
+                            userChoiceIndex = "-99";
                         }
                     }
                     return MenuType.SearchStoreFrontMenu;
@@ -63,7 +73,6 @@ namespace SSDUI
                     if (ListOfSearchedStoreFront == null)
                     {
                         System.Console.WriteLine("There is no matching result.");
-                        return MenuType.SearchStoreFrontMenu;
                     }
                     else
                     {
@@ -71,18 +80,22 @@ namespace SSDUI
                         {
                             System.Console.WriteLine("[" + i + "]" + " " + ListOfSearchedStoreFront[i].ToString());
                         }
-                        System.Console.WriteLine("Pick The Store Front Using Its Index (From 0-" + (ListOfSearchedStoreFront.Count-1) + ") To See Its Inventory: ");
+                        System.Console.WriteLine("Pick The Store Front's Index To See Its Inventory or -99 For Store Front Menu");
                         string userChoiceIndex = Console.ReadLine();
-                        try
+                        while(userChoiceIndex != "-99")
                         {
-                            foreach (Products p in ListOfSearchedStoreFront[int.Parse(userChoiceIndex)].Inventory)
+                            try
                             {
-                                System.Console.WriteLine(p.ToString());
+                                foreach (Products p in ListOfSearchedStoreFront[int.Parse(userChoiceIndex)].Inventory)
+                                {
+                                    System.Console.WriteLine(p.ToString());
+                                }
                             }
-                        }
-                        catch (System.Exception)
-                        {
-                            System.Console.WriteLine("Something Wrong!!!");
+                            catch (System.Exception)
+                            {
+                                System.Console.WriteLine("Something Wrong!!!");
+                            }
+                            userChoiceIndex = "-99";
                         }                       
                     }
                     return MenuType.SearchStoreFrontMenu;
