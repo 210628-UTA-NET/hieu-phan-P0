@@ -19,6 +19,7 @@ namespace SSDUI
 
         public void Menu()
         {
+            System.Console.WriteLine("-------------------------------------");
             System.Console.WriteLine("Welcome to Customer Searching Menu!!!");
             System.Console.WriteLine("Please pick a searching criteria");
             System.Console.WriteLine("[6] Using Phone Number");
@@ -28,6 +29,7 @@ namespace SSDUI
             System.Console.WriteLine("[2] Using First Name");
             System.Console.WriteLine("[1] Customer Menu");
             System.Console.WriteLine("[0] Main Menu");
+            System.Console.WriteLine("-------------------------------------");
         }
 
         public MenuType YourChoice()

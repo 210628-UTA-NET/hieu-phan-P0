@@ -46,6 +46,10 @@ namespace SSDDL
                         {
                             listOfSearchedCustomers.Add(c);
                         }
+                        else
+                        {
+                            listOfSearchedCustomers = null;
+                        }
                     }
                     return listOfSearchedCustomers;
                 case "email":
@@ -54,6 +58,10 @@ namespace SSDDL
                         if (c.Email == p_value)
                         {
                             listOfSearchedCustomers.Add(c);
+                        }
+                        else
+                        {
+                            listOfSearchedCustomers = null;
                         }
                     }
                     return listOfSearchedCustomers;
@@ -64,6 +72,10 @@ namespace SSDDL
                         {
                             listOfSearchedCustomers.Add(c);
                         }
+                        else
+                        {
+                            listOfSearchedCustomers = null;
+                        }
                     }
                     return listOfSearchedCustomers;
                 case "lname":
@@ -72,6 +84,10 @@ namespace SSDDL
                         if (c.Lname == p_value)
                         {
                             listOfSearchedCustomers.Add(c);
+                        }
+                        else
+                        {
+                            listOfSearchedCustomers = null;
                         }
                     }
                     return listOfSearchedCustomers;
@@ -82,9 +98,14 @@ namespace SSDDL
                         {
                             listOfSearchedCustomers.Add(c);
                         }
+                        else
+                        {
+                            listOfSearchedCustomers = null;
+                        }
                     }
                     return listOfSearchedCustomers;
                 default:
+                    listOfSearchedCustomers = null;
                     return listOfSearchedCustomers;
             }
         }
