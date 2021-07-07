@@ -36,68 +36,14 @@ namespace SSDUI
                     System.Console.WriteLine("Enter StoreFront Address:");
                     value = System.Console.ReadLine();
                     ListOfSearchedStoreFront = _sfbl.SearchStoreFronts(criteria, value);
-                    if (ListOfSearchedStoreFront == null)
-                    {
-                        System.Console.WriteLine("There is no matching result.");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < ListOfSearchedStoreFront.Count; i++)
-                        {
-                            System.Console.WriteLine("[" + i + "]" + " " + ListOfSearchedStoreFront[i].ToString());
-                        }
-                        System.Console.WriteLine("Pick The Store Front's Index To See Its Inventory or -99 For Store Front Menu");
-                        string userChoiceIndex = Console.ReadLine();
-                        while(userChoiceIndex != "-99")
-                        {
-                            try
-                            {
-                                foreach (Products p in ListOfSearchedStoreFront[int.Parse(userChoiceIndex)].Inventory)
-                                {
-                                    System.Console.WriteLine(p.ToString());
-                                }
-                            }
-                            catch (System.Exception)
-                            {
-                                System.Console.WriteLine("Something Wrong!!!");
-                            }
-                            userChoiceIndex = "-99";
-                        }
-                    }
+                    DisplaySearchResult(ListOfSearchedStoreFront);
                     return MenuType.SearchStoreFrontMenu;
                 case "2":
                     criteria = "name";
                     System.Console.WriteLine("Enter Store Front Name:");
                     value = System.Console.ReadLine();
                     ListOfSearchedStoreFront = _sfbl.SearchStoreFronts(criteria, value);
-                    if (ListOfSearchedStoreFront == null)
-                    {
-                        System.Console.WriteLine("There is no matching result.");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < ListOfSearchedStoreFront.Count; i++)
-                        {
-                            System.Console.WriteLine("[" + i + "]" + " " + ListOfSearchedStoreFront[i].ToString());
-                        }
-                        System.Console.WriteLine("Pick The Store Front's Index To See Its Inventory or -99 For Store Front Menu");
-                        string userChoiceIndex = Console.ReadLine();
-                        while(userChoiceIndex != "-99")
-                        {
-                            try
-                            {
-                                foreach (Products p in ListOfSearchedStoreFront[int.Parse(userChoiceIndex)].Inventory)
-                                {
-                                    System.Console.WriteLine(p.ToString());
-                                }
-                            }
-                            catch (System.Exception)
-                            {
-                                System.Console.WriteLine("Something Wrong!!!");
-                            }
-                            userChoiceIndex = "-99";
-                        }                       
-                    }
+                    DisplaySearchResult(ListOfSearchedStoreFront);
                     return MenuType.SearchStoreFrontMenu;
                 case "1":
                     return MenuType.StoreFrontsMenu;
@@ -108,6 +54,38 @@ namespace SSDUI
                     Console.WriteLine("Press Enter to continue");
                     Console.ReadLine();
                     return MenuType.CustomersMenu;
+            }
+        }
+
+        public void DisplaySearchResult(List<StoreFronts> p_list)
+        {
+            if (p_list == null)
+            {
+                System.Console.WriteLine("There is no matching result.");
+            }
+            else
+            {
+                for (int i = 0; i < p_list.Count; i++)
+                {
+                    System.Console.WriteLine("[" + i + "]" + " " + p_list[i].ToString());
+                }
+                System.Console.WriteLine("Pick The Store Front's Index To See Its Inventory or -99 For Store Front Menu");
+                string userChoiceIndex = Console.ReadLine();
+                while(userChoiceIndex != "-99")
+                {
+                    try
+                    {
+                        foreach (Products p in p_list[int.Parse(userChoiceIndex)].Inventory)
+                        {
+                            System.Console.WriteLine(p.ToString());
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        System.Console.WriteLine("Something Wrong!!!");
+                    }
+                        userChoiceIndex = "-99";
+                }                       
             }
         }
     }

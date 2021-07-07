@@ -42,85 +42,35 @@ namespace SSDUI
                     System.Console.WriteLine("Enter customer phone number:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomer(criteria, value);
-                    if (listOfSearchedCustomer == null)
-                    {
-                        System.Console.WriteLine("There is no matching result.");
-                    }
-                    else
-                    {
-                        foreach (Customers c in listOfSearchedCustomer)
-                        {
-                            System.Console.WriteLine(c.ToString());
-                        }
-                    }
+                    DisplaySearchResult(listOfSearchedCustomer);
                     return MenuType.SearchCustomerMenu;
                 case "5":
                     criteria = "email";
                     System.Console.WriteLine("Enter customer email:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomer(criteria, value);
-                    if (listOfSearchedCustomer == null)
-                    {
-                        System.Console.WriteLine("There is no matching result.");
-                    }
-                    else
-                    {
-                        foreach (Customers c in listOfSearchedCustomer)
-                        {
-                            System.Console.WriteLine(c.ToString());
-                        }                     
-                    }
+                    DisplaySearchResult(listOfSearchedCustomer);
                     return MenuType.SearchCustomerMenu;
                 case "4":
                     criteria = "address";
                     System.Console.WriteLine("Enter customer address:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomer(criteria, value);
-                    if (listOfSearchedCustomer == null)
-                    {
-                        System.Console.WriteLine("There is no matching result.");
-                    }
-                    else
-                    {
-                        foreach (Customers c in listOfSearchedCustomer)
-                        {
-                            System.Console.WriteLine(c.ToString());
-                        }
-                    }
+                    DisplaySearchResult(listOfSearchedCustomer);
                     return MenuType.SearchCustomerMenu;
                 case "3":
                     criteria = "lname";
                     System.Console.WriteLine("Enter customer last name:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomer(criteria, value);
-                    if (listOfSearchedCustomer == null)
-                    {
-                        System.Console.WriteLine("There is no matching result.");
-                    }
-                    else
-                    {
-                        foreach (Customers c in listOfSearchedCustomer)
-                        {
-                            System.Console.WriteLine(c.ToString());
-                        }
-                    }
+                    DisplaySearchResult(listOfSearchedCustomer);
                     return MenuType.SearchCustomerMenu;
                 case "2":
                     criteria = "fname";
                     System.Console.WriteLine("Enter customer first name:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomer(criteria, value);
-                    if (listOfSearchedCustomer == null)
-                    {
-                        System.Console.WriteLine("There is no matching result.");
-                    }
-                    else
-                    {
-                        foreach (Customers c in listOfSearchedCustomer)
-                        {
-                            System.Console.WriteLine(c.ToString());
-                        }                        
-                    }
+                    DisplaySearchResult(listOfSearchedCustomer);
                     return MenuType.SearchCustomerMenu;
                 case "1":
                     return MenuType.CustomersMenu;
@@ -134,6 +84,21 @@ namespace SSDUI
             }
 
 
+        }
+
+        public void DisplaySearchResult(List<Customers> p_list)
+        {
+            if (p_list == null)
+                    {
+                        System.Console.WriteLine("There is no matching result.");
+                    }
+                    else
+                    {
+                        for(int i = 0; i < p_list.Count; i++)
+                        {
+                            System.Console.WriteLine("["+i+"]"+ p_list[i].ToString());
+                        }                        
+                    }
         }
     }
 }
