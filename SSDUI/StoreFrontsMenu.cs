@@ -9,8 +9,8 @@ namespace SSDUI
             System.Console.WriteLine("----------------------------------------");
             System.Console.WriteLine("Welcome to StoreFront Menu!");
             System.Console.WriteLine("What would you like to do?");
-            System.Console.WriteLine("[0] Main Menu");
             System.Console.WriteLine("[1] Search StoreFront");
+            System.Console.WriteLine("[0] Main Menu");
         }
 
         public MenuType YourChoice()

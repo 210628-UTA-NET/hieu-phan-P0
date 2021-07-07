@@ -30,11 +30,18 @@ namespace SSDDL
             switch(p_criteria)
             {
                 case "name":
-                    foreach(StoreFronts s in listOfStoreFronts)
+                    //loop through the listOfStoreFront, 
+                    //if the storefront in the list match the p_value
+                    //add that storefront to the listOfSearchedStoreFronts
+                    for(int i = 0; i < listOfStoreFronts.Count; i++)
                     {
-                        if (s.Name == p_value)
+                        if (listOfStoreFronts[i].Name == p_value)
                         {
-                            listOfSearchedStoreFronts.Add(s);
+                            listOfSearchedStoreFronts.Add(listOfStoreFronts[i]);
+                        }
+                        else
+                        {
+                            listOfSearchedStoreFronts = null;
                         }
                     }
                     return listOfSearchedStoreFronts;
@@ -45,9 +52,14 @@ namespace SSDDL
                         {
                             listOfSearchedStoreFronts.Add(s);
                         }
+                        else
+                        {
+                            listOfSearchedStoreFronts = null;
+                        }
                     }
                     return listOfSearchedStoreFronts;
                 default:
+                    listOfSearchedStoreFronts = null;
                     return listOfSearchedStoreFronts;
             }
         }
