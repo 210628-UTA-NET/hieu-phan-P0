@@ -28,7 +28,9 @@ namespace SSDBL
         /// Search customer using a criteria
         /// </summary>
         /// <returns>customer list with the same criteria</returns>
-        List<Customers> SearchCustomer(string p_criteria, string p_value);
+        List<Customers> SearchCustomers(string p_criteria, string p_value);
+
+        Customers GetACustomer(int p_id);
         
     }
 }

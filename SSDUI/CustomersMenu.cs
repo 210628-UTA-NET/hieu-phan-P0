@@ -6,11 +6,12 @@ namespace SSDUI
     {
         public void Menu()
         {
-            System.Console.WriteLine("----------------------------------------");
+            System.Console.WriteLine("-----------------------------------------------------------------------");
             System.Console.WriteLine("Welcome to Customer Menu!");
             System.Console.WriteLine("What would you like to do?");
-            System.Console.WriteLine("[2] Search Customer");
-            System.Console.WriteLine("[1] Add Customer");
+            System.Console.WriteLine("[1] Log In");
+            System.Console.WriteLine("[2] Register");
+            System.Console.WriteLine("[3] View Stores");
             System.Console.WriteLine("[0] Main Menu");
         }
 
@@ -20,12 +21,14 @@ namespace SSDUI
 
             switch (userChoice)
             {
+                case "1":
+                    return MenuType.CustomersLogInMenu;
+                case "2":
+                    return MenuType.AddCustomerMenu;
+                case "3":
+                    return MenuType.CustomersViewStoreMenu;
                 case "0":
                     return MenuType.MainMenu;
-                case "1":
-                    return MenuType.AddCustomerMenu;
-                case "2":
-                    return MenuType.SearchCustomerMenu;
                 default:
                     Console.WriteLine("Input was not correct");
                     Console.WriteLine("Press Enter to continue");

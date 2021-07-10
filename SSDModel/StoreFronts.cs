@@ -4,30 +4,36 @@ using System.Collections.Generic;
 namespace SSDModel
 {
     public class StoreFronts {
+        private int _id;
         private string _name;
         private string _address;
-        private List<Products> _inventory = new List<Products>();
+        private string _city;
+        private string _state;
         public StoreFronts()
         {           
         }
 
+        public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
         public string Address { get => _address; set => _address = value; }
-        public List<Products> Inventory { get => _inventory; set => _inventory = value; }
+        public string City { get => _city; set => _city = value; }
+        public string State { get => _state; set => _state = value; }
 
-        // public void Add(Products _item) {
-        //     _inventory.Add(_item);
-        // }
-
-        // need to create a remove method
         public override string ToString()
         {
-            string inventory = "";
-            for(int i = 0; i < _inventory.Count; i++)
-            {
-                inventory += "\n" + "[" + i + "]" + _inventory[i].ToString();
-            }
-            return $"Name: {Name} ||| Address: {Address}";
+            
+            return $"Id:[{Id}] Name: {Name} ||| Address: {Address} ||| City: {City} ||| State: {State}";
         }
+
+        // public string DisplayInventory()
+        // {
+        //     string inventoryString = "";
+        //     for(int i = 0; i < Inventory.Count; i++)
+        //     {
+        //         inventoryString += "\n" + "[" + i + "] " + Inventory[i].Keys.ToString() + " Quantity : " + Inventory[i].Values;
+        //     }
+
+        //     return inventoryString;
+        // }
     }
 }

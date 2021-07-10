@@ -6,8 +6,8 @@ namespace SSDBL
 {
     public class StoreFrontBL : IStoreFrontBL
     {
-        private IStoreFrontRepository _repo;
-        public StoreFrontBL(IStoreFrontRepository p_repo)
+        private IStoreFrontDL _repo;
+        public StoreFrontBL(IStoreFrontDL p_repo)
         {
             _repo = p_repo;
         }
@@ -16,6 +16,11 @@ namespace SSDBL
         public List<StoreFronts> GetAllStoreFronts()
         {
             return _repo.GetAllStoreFronts();
+        }
+
+        public StoreFronts GetAStore(int p_id)
+        {
+            return _repo.GetAStore(p_id);
         }
 
         public List<StoreFronts> SearchStoreFronts(string p_criteria, string p_value)

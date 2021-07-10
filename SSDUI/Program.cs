@@ -17,7 +17,8 @@ namespace SSDUI
             IFactory menuFactory = new MenuFactory();
 
             while(repeat)
-            {               
+            {        
+                // System.Console.Clear();       
                 storeMenu.Menu();
                 currentMenu = storeMenu.YourChoice();
 
@@ -28,6 +29,12 @@ namespace SSDUI
                         break;
                     case MenuType.CustomersMenu:
                         storeMenu = menuFactory.GetMenu(MenuType.CustomersMenu);
+                        break;
+                    case MenuType.CustomersLogInMenu:
+                        storeMenu = menuFactory.GetMenu(MenuType.CustomersLogInMenu);
+                        break;
+                    case MenuType.CustomersViewStoreMenu:
+                        storeMenu = menuFactory.GetMenu(MenuType.CustomersViewStoreMenu);
                         break;
                     case MenuType.AddCustomerMenu:
                         storeMenu = menuFactory.GetMenu(MenuType.AddCustomerMenu);
@@ -40,6 +47,9 @@ namespace SSDUI
                         break;
                     case MenuType.SearchStoreFrontMenu:
                         storeMenu = menuFactory.GetMenu(MenuType.SearchStoreFrontMenu);
+                        break;
+                    case MenuType.PlaceCustomerOrderMenu:
+                        storeMenu = menuFactory.GetMenu(MenuType.PlaceCustomerOrderMenu);
                         break;
                     case MenuType.Exit:
                         repeat = false;

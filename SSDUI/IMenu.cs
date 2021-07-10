@@ -4,10 +4,13 @@ namespace SSDUI
     {
         MainMenu,
         CustomersMenu,
+        CustomersViewStoreMenu,
+        CustomersLogInMenu,
         AddCustomerMenu,
         SearchCustomerMenu,
         StoreFrontsMenu,
         SearchStoreFrontMenu,
+        PlaceCustomerOrderMenu,
         Exit
     }
     public interface IMenu

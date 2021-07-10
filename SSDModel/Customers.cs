@@ -5,27 +5,22 @@ using System.Text.RegularExpressions;
 namespace SSDModel
 {
     public class Customers{
+        private int _id;
         private string _fname;
         private string _lname;
         private string _address;
+        private string _city;
+        private string _state;
         private string _email;
         private string _phone;
         private List<Orders> _listOfOrders = new List<Orders>();
 
-        
-
-        // public Customers(string p_name, string p_address, string p_email, string p_phone)
-        // {
-        //     Name = p_name;
-        //     Address = p_address;
-        //     Email = p_email;
-        //     Phone = p_phone;
-        // }
 
         public Customers()
         {
         }
 
+        public int Id { get => _id; set => _id = value; }
 
         // RegEx can be added here       
         public string Fname { 
@@ -76,19 +71,16 @@ namespace SSDModel
             }
         }
 
-        public List<Orders> ListOfOrders { get => _listOfOrders; }
-
+        public List<Orders> ListOfOrders { get => _listOfOrders; set => _listOfOrders = value; }
+        public string City { get => _city; set => _city = value; }
+        public string State { get => _state; set => _state = value; }
 
         public override string ToString()
         {
-            // return "Customer: " + _name + " | " + _address + " | " + _email + " | " + _phone + "\nNumber of order: " + ListOfOrders.Count;
-            return $"First Name: {Fname} ||| Last Name: {Lname} ||| Address: {Address} ||| Email: {Email} ||| Phone: {Phone}";
+            return $"ID: {Id} ||| First Name: {Fname} ||| Last Name: {Lname} ||| Address: {Address} ||| City: {City} ||| State: {State} ||| Email: {Email} ||| Phone: {Phone}";
         }
 
-        // public void AddToListOfOrders(Orders p_order)
-        // {
-        //     ListOfOrders.Add(p_order);
-        // }
+        
         
     }
 }

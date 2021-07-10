@@ -6,7 +6,7 @@ namespace SSDDL
     /// <summary>
     /// It is responsible for accessing our database (in this case it will be a JSON file stored in our folder)
     /// </summary>
-    public interface ICustomerRepository
+    public interface ICustomerDL
     {
         /// <summary>
         /// This method will add a customer to the json file
@@ -23,6 +23,8 @@ namespace SSDDL
         /// <param name="p_criteria"></param>
         /// <param name="p_value"></param>
         /// <returns></returns>
-        List<Customers> SearchCustomer(string p_criteria, string p_value);
+        List<Customers> SearchCustomers(string p_criteria, string p_value);
+
+        Customers GetACustomer(int p_id);
     }
 }
