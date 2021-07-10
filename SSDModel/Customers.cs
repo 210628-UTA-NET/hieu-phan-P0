@@ -13,7 +13,6 @@ namespace SSDModel
         private string _state;
         private string _email;
         private string _phone;
-        private List<Orders> _listOfOrders = new List<Orders>();
 
 
         public Customers()
@@ -71,7 +70,6 @@ namespace SSDModel
             }
         }
 
-        public List<Orders> ListOfOrders { get => _listOfOrders; set => _listOfOrders = value; }
         public string City { get => _city; set => _city = value; }
         public string State { get => _state; set => _state = value; }
 

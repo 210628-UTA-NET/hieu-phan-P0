@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using SSDModel;
+using System.Linq;
 
 namespace SSDDL
 {
@@ -13,7 +14,16 @@ namespace SSDDL
 
         public List<LineItems> GetAllLineItems()
         {
-            throw new System.NotImplementedException();
+            return _context.LineItems.Select(
+                li =>
+                    new LineItems()
+                    {
+                        Id = li.Id,
+                        OrderId = li.OrderId,
+                        ProductId = li.ProductId,
+                        Quantity = li.Quantity
+                    }
+            ).ToList();
         }
     }
 }

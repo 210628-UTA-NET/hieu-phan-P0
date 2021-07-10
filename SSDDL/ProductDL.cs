@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using SSDModel;
+using System.Linq;
 
 namespace SSDDL
 {
@@ -12,7 +13,17 @@ namespace SSDDL
         }
         public List<Products> GetAllProducts()
         {
-            throw new System.NotImplementedException();
+            return _context.Products.Select(
+                prod =>
+                    new Products()
+                    {
+                        Id = prod.Id,
+                        Name = prod.Name,
+                        Price = (double)prod.Price,
+                        Description = prod.Description,
+                        Category = prod.Category
+                    }
+            ).ToList();
         }
     }
 }

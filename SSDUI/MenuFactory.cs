@@ -31,7 +31,10 @@ namespace SSDUI
                 case MenuType.CustomersMenu:
                     return new CustomersMenu();
                 case MenuType.CustomersLogInMenu:
-                    return new CustomersLogInMenu(new CustomerBL(new CustomerDL(new DemoDbContext(options))), new StoreFrontBL(new StoreFrontDL(new DemoDbContext(options))));
+                    return new CustomersLogInMenu(new CustomerBL(new CustomerDL(new DemoDbContext(options))), 
+                                                    new StoreFrontBL(new StoreFrontDL(new DemoDbContext(options))),
+                                                    new InventoryBL(new InventoryDL(new DemoDbContext(options))),
+                                                    new ProductBL(new ProductDL(new DemoDbContext(options))));
                 case MenuType.CustomersViewStoreMenu:
                     return new CustomersViewStoreMenu(new StoreFrontBL(new StoreFrontDL(new DemoDbContext(options))));
                 case MenuType.AddCustomerMenu:
@@ -42,8 +45,6 @@ namespace SSDUI
                     return new StoreFrontsMenu();
                 case MenuType.SearchStoreFrontMenu:
                     return new SearchStoreFrontMenu(new StoreFrontBL(new StoreFrontDL(new DemoDbContext(options))));
-                case MenuType.PlaceCustomerOrderMenu:
-                    return new PlaceCustomerOrderMenu(new CustomerBL(new CustomerDL(new DemoDbContext(options))), new StoreFrontBL(new StoreFrontDL(new DemoDbContext(options))));
                 default:
                     return null;
             }

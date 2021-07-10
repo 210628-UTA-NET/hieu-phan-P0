@@ -8,16 +8,23 @@ namespace SSDUI
     {
         private static Customers theCustomer;
         private static StoreFronts theStore;
+        private static List<Inventories> theInventories = new List<Inventories>();
+        private static List<Products> listOfProducts;
         private ICustomerBL _customerBL;
-        private IStoreFrontBL _sfbl;
+        private IStoreFrontBL _sfBL;
+        private IInventoryBL _invBL;
+        private IProductBL _prodBL;
         
 
-        public CustomersLogInMenu(ICustomerBL p_customerBL, IStoreFrontBL p_sfbl)
+        public CustomersLogInMenu(ICustomerBL p_customerBL, IStoreFrontBL p_sfBL, IInventoryBL p_invBL, IProductBL p_prodBL)
         {
             _customerBL = p_customerBL;
-            _sfbl = p_sfbl;
+            _sfBL = p_sfBL;
+            _invBL = p_invBL;
+            _prodBL = p_prodBL;
         }
 
+        
         public void Menu()
         {
             System.Console.WriteLine("-----------------------------------------------------------------------");
@@ -132,13 +139,14 @@ namespace SSDUI
         {
             string id = "";
             bool flag = true;
+            //Find a store
             System.Console.WriteLine("Enter A Store ID: ");
             while(flag)
             {
                 try
                 {
                     id = Console.ReadLine();
-                    theStore = _sfbl.GetAStore(int.Parse(id));
+                    theStore = _sfBL.GetAStore(int.Parse(id));
                     if (theStore == null)
                     {
                         System.Console.WriteLine("Store Front Not Found");
@@ -158,9 +166,143 @@ namespace SSDUI
                     else if (theStore != null)
                     {
                         //Display the store inventory
+                        List<Inventories> listOfInventories = _invBL.GetAllInventories();
+                        foreach (Inventories inv in listOfInventories)
+                        {
+                            if(inv.StoreFrontId == theStore.Id)
+                            {
+                                theInventories.Add(inv);
+                            }
+                        }
+                        listOfProducts = _prodBL.GetAllProducts();
+                        System.Console.WriteLine("-----------------------------------------------------------------------");
+                        System.Console.WriteLine("The Store's Inventory");
+                        for (int i = 0; i < theInventories.Count; i++)
+                        {
+                            System.Console.WriteLine("Product ID: " + theInventories[i].ProductId +
+                                                        " ||| Product Name: " + listOfProducts[theInventories[i].ProductId - 1].Name +
+                                                        " ||| Product Price: $" + listOfProducts[theInventories[i].ProductId - 1].Price +
+                                                        " ||| Inventory Quantity: " + theInventories[i].Quantity);
+                        }
+                        System.Console.WriteLine("-----------------------------------------------------------------------");
+                        //Start the order
+                        System.Console.WriteLine("What Product Would You Like To Order?");
+                        System.Console.WriteLine("Use Product ID To Select Product :");
+                        bool productFlag = true;
+                        string productId = "";
+                        double total = 0.0;
+                        // int quantity = 0;
+                        List<int> availableProductId = new List<int>();
+                        foreach (Inventories inv in theInventories)
+                        {
+                            availableProductId.Add(inv.ProductId);
+                        }
+                        while(productFlag)
+                        {
+                            try
+                            {
+                                productId = Console.ReadLine();
+                                if(!availableProductId.Contains(int.Parse(productId)))
+                                {
+                                    System.Console.WriteLine("Product ID Not Found");
+                                    System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                                    string string0 = Console.ReadLine().ToLower();
+                                    switch(string0)
+                                    {
+                                        case "quit":
+                                        productFlag = false;
+                                        break;
+                                        default:
+                                        System.Console.WriteLine("Re-enter Product ID:");
+                                        break;
+                                    }
+                                }
+                                else if(availableProductId.Contains(int.Parse(productId)))
+                                {
+                                    //Display the selected product
+                                    Products theProduct = new Products();
+                                    Inventories theProductInventory = new Inventories();
+                                    foreach(Products p in listOfProducts)
+                                    {
+                                        if(p.Id == int.Parse(productId))
+                                        {
+                                            theProduct = p;
+                                        }
+                                    }
+
+                                    foreach (Inventories inv in theInventories)
+                                    {
+                                        if (inv.ProductId == int.Parse(productId))
+                                        {
+                                            theProductInventory = inv;
+                                        }
+                                    }
+
+                                    System.Console.WriteLine(theProduct.ToString()+ " ||| Available Quantity: " + theProductInventory.Quantity);
+                                    System.Console.WriteLine("Enter Your Quantity: ");
+                                    bool quantityFlag = true;
+                                    while(quantityFlag)
+                                    {
+                                        try
+                                        {
+                                            int quantity = int.Parse(Console.ReadLine());
+                                            if (quantity <= 0 || quantity > theProductInventory.Quantity)
+                                            {
+                                                System.Console.WriteLine("Quantity Must Be Greater Than 0 and Less Than The Available Quantity");
+                                                System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                                                string string0 = Console.ReadLine().ToLower();
+                                                switch(string0)
+                                                {
+                                                    case "quit":
+                                                    productFlag = false;
+                                                    break;
+                                                    default:
+                                                    System.Console.WriteLine("Re-enter Product ID:");
+                                                    break;
+                                                }
+                                            }
+                                            else if(quantity > 0 && quantity <= theProductInventory.Quantity)
+                                            {
+                                                
+                                            }
+                                        }
+                                        catch (System.Exception)
+                                        {
+                                            System.Console.WriteLine("Input was not valid - Quantity Must Be A Number");
+                                            System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                                            string string0 = Console.ReadLine().ToLower();
+                                            switch(string0)
+                                            {
+                                                case "quit":
+                                                quantityFlag = false;
+                                                break;
+                                                default:
+                                                System.Console.WriteLine("Re-enter Product Quantity: ");
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }  
+                            }
+                            catch (System.Exception)
+                            {
+                                System.Console.WriteLine("Input was not valid - Id Must Be A Number");
+                                System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                                string string0 = Console.ReadLine().ToLower();
+                                switch(string0)
+                                {
+                                    case "quit":
+                                    productFlag = false;
+                                    break;
+                                    default:
+                                    System.Console.WriteLine("Re-enter Product ID: ");
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
-                catch (System.Exception)
+                catch (System.Exception )
                 {
                     System.Console.WriteLine("Input was not valid - Id Must Be A Number");
                     System.Console.WriteLine("Store Front Not Found");

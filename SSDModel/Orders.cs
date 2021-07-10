@@ -16,8 +16,7 @@ namespace SSDModel
         public int Id { get => _id; set => _id = value; }
         public int CustomerId { get => _customerId; set => _customerId = value; }
         public int StoreFrontId { get => _storeFrontId; set => _storeFrontId = value; }
-        public double TotalPrice1 { get => _totalPrice; set => _totalPrice = value; }
-        public double TotalPrice { get => OrderTotal(); set => TotalPrice1 = OrderTotal();}
+        public double TotalPrice { get => _totalPrice; set => _totalPrice = value; }
 
         public double OrderTotal()
         {
