@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace SSDUI
 {
-    public class SearchCustomerMenu : IMenu
+    public class CustomersSearchMenu : IMenu
     {
         private static List<Customers> listOfSearchedCustomer;
         private string criteria;
         private string value;
         private ICustomerBL _customerBL;
 
-        public SearchCustomerMenu(ICustomerBL p_customerBL)
+        public CustomersSearchMenu(ICustomerBL p_customerBL)
         {
             _customerBL = p_customerBL;
         }
@@ -43,35 +43,35 @@ namespace SSDUI
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
                     DisplaySearchResult(listOfSearchedCustomer);
-                    return MenuType.SearchCustomerMenu;
+                    return MenuType.CustomersSearchMenu;
                 case "5":
                     criteria = "email";
                     System.Console.WriteLine("Enter customer email:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
                     DisplaySearchResult(listOfSearchedCustomer);
-                    return MenuType.SearchCustomerMenu;
+                    return MenuType.CustomersSearchMenu;
                 case "4":
                     criteria = "address";
                     System.Console.WriteLine("Enter customer address:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
                     DisplaySearchResult(listOfSearchedCustomer);
-                    return MenuType.SearchCustomerMenu;
+                    return MenuType.CustomersSearchMenu;
                 case "3":
                     criteria = "lname";
                     System.Console.WriteLine("Enter customer last name:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
                     DisplaySearchResult(listOfSearchedCustomer);
-                    return MenuType.SearchCustomerMenu;
+                    return MenuType.CustomersSearchMenu;
                 case "2":
                     criteria = "fname";
                     System.Console.WriteLine("Enter customer first name:");
                     value = System.Console.ReadLine();
                     listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
                     DisplaySearchResult(listOfSearchedCustomer);
-                    return MenuType.SearchCustomerMenu;
+                    return MenuType.CustomersSearchMenu;
                 case "1":
                     return MenuType.CustomersMenu;
                 case "0":

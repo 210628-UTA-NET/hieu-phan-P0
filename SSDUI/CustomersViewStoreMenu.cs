@@ -43,7 +43,7 @@ namespace SSDUI
                     _listOfSearchedStore.Clear();
                     return MenuType.CustomersViewStoreMenu;
                 case "2":
-                    return MenuType.SearchStoreFrontMenu;
+                    return MenuType.StoreFrontsSearchMenu;
                 default:
                     Console.WriteLine("Input was not correct");
                     Console.WriteLine("Press Enter to continue");

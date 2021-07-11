@@ -3,13 +3,15 @@ namespace SSDUI
     public enum MenuType
     {
         MainMenu,
+        AddCustomerMenu,
         CustomersMenu,
         CustomersViewStoreMenu,
         CustomersLogInMenu,
-        AddCustomerMenu,
-        SearchCustomerMenu,
+        CustomersSearchMenu,
         StoreFrontsMenu,
-        SearchStoreFrontMenu,
+        StoreFrontsSearchMenu,
+        StoreFrontsCustomerMenu,
+        StoreFrontsInventoryMenu,
         Exit
     }
     public interface IMenu

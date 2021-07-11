@@ -121,8 +121,7 @@ namespace SSDUI
                         default:
                         System.Console.WriteLine("Re-enter Your ID: ");
                         break;
-                    }
-                    
+                    }                   
                 }
             }
 
