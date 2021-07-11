@@ -18,22 +18,9 @@ namespace SSDModel
         public int StoreFrontId { get => _storeFrontId; set => _storeFrontId = value; }
         public double TotalPrice { get => _totalPrice; set => _totalPrice = value; }
 
-        public double OrderTotal()
+        public override string ToString()
         {
-            double total = 0.0;
-            return total;
+            return $"Order ID: [{Id}] ||| StoreFrontID: {StoreFrontId} ||| Total Price: ${TotalPrice}";
         }
-        
-
-        // public override string ToString()
-        // {
-        //     string tempString = "Location: " + _location.Name + _location.Address + "\n";
-        //     for (int i = 0; i < _listOfLineItems.Count; i++)
-        //     {
-        //         tempString += _listOfLineItems[i].ToString() + "\n";
-        //     }
-        //     tempString += "Order Total is: $" + OrderTotal();
-        //     return tempString;
-        // }
     }
 }

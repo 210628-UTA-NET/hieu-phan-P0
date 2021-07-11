@@ -37,5 +37,26 @@ namespace SSDDL
                     }
             ).ToList();
         }
+
+        public List<LineItems> GetAnOrderLineItems(Orders p_order)
+        {
+            // var queryResult = (from li in _context.LineItems
+            //                     where li.OrderId == p_order.Id
+            //                     select li).ToList();
+            
+            // _context.LineItems.Where(li => li.OrderId == p_order.Id).ToList();
+
+            List<LineItems> listOfAllLineItems = this.GetAllLineItems();
+            List<LineItems> returnedList = new List<LineItems>();
+            foreach (LineItems li in listOfAllLineItems)
+            {
+                if(li.OrderId == p_order.Id)
+                {
+                    returnedList.Add(li);
+                }
+            }
+            return returnedList;
+            
+        }
     }
 }

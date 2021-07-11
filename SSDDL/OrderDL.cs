@@ -34,13 +34,13 @@ namespace SSDDL
         public List<Orders> GetAllOrders()
         {
             return _context.Orders.Select(
-                or =>
+                order =>
                     new Orders()
                     {
-                        Id = or.Id,
-                        CustomerId = or.CustomerId,
-                        StoreFrontId = or.StoreFrontId,
-                        TotalPrice = (double)or.TotalPrice
+                        Id = order.Id,
+                        CustomerId = order.CustomerId,
+                        StoreFrontId = order.StoreFrontId,
+                        TotalPrice = (double)order.TotalPrice
                     }
             ).ToList();
         }
