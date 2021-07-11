@@ -17,5 +17,9 @@ namespace SSDBL
             return _repo.GetAllInventories();
         }
 
+        public Inventories UpdateInventoryQuantity(Inventories p_inv, int p_quantity)
+        {
+            return _repo.UpdateInventoryQuantity(p_inv, p_quantity);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace SSDModel
 
         public override string ToString()
         {
-            return "OrderID: " + OrderId + " | ProductID : $" + ProductId + " | Quantity : " + Quantity;
+            return "OrderID: " + OrderId + " | ProductID : " + ProductId + " | Quantity : " + Quantity;
         }
     }
 }

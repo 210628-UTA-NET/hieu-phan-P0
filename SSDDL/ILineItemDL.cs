@@ -6,6 +6,6 @@ namespace SSDDL
     public interface ILineItemDL
     {
         List<LineItems> GetAllLineItems();
-
+        LineItems AddALineItem(LineItems p_lineItem);
     }
 }

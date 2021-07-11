@@ -12,6 +12,18 @@ namespace SSDDL
             _context = p_context;
         }
 
+        public LineItems AddALineItem(LineItems p_lineItem)
+        {
+            _context.LineItems.Add(new Entities.LineItem{
+                OrderId = p_lineItem.OrderId,
+                ProductId = p_lineItem.ProductId,
+                Quantity = p_lineItem.Quantity
+            });
+
+            _context.SaveChanges();
+            return p_lineItem;
+        }
+
         public List<LineItems> GetAllLineItems()
         {
             return _context.LineItems.Select(

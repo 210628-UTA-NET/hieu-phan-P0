@@ -12,6 +12,11 @@ namespace SSDBL
             _repo = p_repo;
         }
 
+        public LineItems AddALineItem(LineItems p_lineItem)
+        {
+            return _repo.AddALineItem(p_lineItem);
+        }
+
         public List<LineItems> GetAllLineItems()
         {
             return _repo.GetAllLineItems();

@@ -24,5 +24,26 @@ namespace SSDDL
                     }
             ).ToList();
         }
+
+        public Inventories UpdateInventoryQuantity(Inventories p_inv, int p_quantity)
+        {
+            var theInv = (from invt in _context.Inventories
+                                where invt.Id == p_inv.Id
+                                select invt).First();
+            theInv.Quantity = p_quantity;
+
+            _context.SaveChanges();
+
+            List<Inventories> listOfInventory = GetAllInventories();
+            Inventories inv = new Inventories();
+            foreach(Inventories i in listOfInventory)
+            {
+                if(i.Id == p_inv.Id)
+                {
+                    inv = i;
+                }
+            }
+            return inv;
+        }
     }
 }

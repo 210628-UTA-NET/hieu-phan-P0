@@ -6,6 +6,6 @@ namespace SSDBL
     public interface ILineItemBL
     {
         List<LineItems> GetAllLineItems();
-
+        LineItems AddALineItem(LineItems p_lineItem);
     }
 }

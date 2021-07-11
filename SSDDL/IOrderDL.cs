@@ -7,6 +7,6 @@ namespace SSDDL
     {
         List<Orders> GetAllOrders();
 
-
+        Orders AddAnOrder(Orders p_order);
     }
 }

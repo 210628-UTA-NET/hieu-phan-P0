@@ -23,7 +23,7 @@ namespace SSDModel
 
         public override string ToString()
         {
-            return $"Product ID: {Id} ||| Product: {Name} ||| Price: {Price} ||| Description: {Description} ||| Category: {Category} |||";
+            return $"Product ID: {Id} ||| Product: {Name} ||| Price: ${Price} ||| Description: {Description} ||| Category: {Category} |||";
         }
     }
 }

@@ -7,7 +7,7 @@ namespace SSDBL
     {
         List<Inventories> GetAllInventories();
 
-        
+        Inventories UpdateInventoryQuantity(Inventories p_inv, int p_quantity);
 
     }
 }
