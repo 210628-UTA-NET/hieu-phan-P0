@@ -22,13 +22,12 @@ namespace SSDUI
             System.Console.WriteLine("-------------------------------------");
             System.Console.WriteLine("Welcome to Customer Searching Menu!!!");
             System.Console.WriteLine("Please pick a searching criteria");
-            System.Console.WriteLine("[6] Using Phone Number");
-            System.Console.WriteLine("[5] Using Email");
-            System.Console.WriteLine("[4] Using Address");
-            System.Console.WriteLine("[3] Using Last Name");
-            System.Console.WriteLine("[2] Using First Name");
-            System.Console.WriteLine("[1] Customer Menu");
-            System.Console.WriteLine("[0] Main Menu");
+            System.Console.WriteLine("[1] Using First Name");
+            System.Console.WriteLine("[2] Using Last Name");
+            System.Console.WriteLine("[3] Using Address");
+            System.Console.WriteLine("[4] Using Email");
+            System.Console.WriteLine("[5] Using Phone Number");
+            System.Console.WriteLine("[0] Store Front Customer Menu");
             System.Console.WriteLine("-------------------------------------");
         }
 
@@ -37,71 +36,97 @@ namespace SSDUI
             string userChoice = Console.ReadLine();
             switch (userChoice)
             {
-                case "6":
-                    criteria = "phone";
-                    System.Console.WriteLine("Enter customer phone number:");
-                    value = System.Console.ReadLine();
-                    listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
-                    DisplaySearchResult(listOfSearchedCustomer);
-                    return MenuType.CustomersSearchMenu;
                 case "5":
-                    criteria = "email";
-                    System.Console.WriteLine("Enter customer email:");
-                    value = System.Console.ReadLine();
-                    listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
-                    DisplaySearchResult(listOfSearchedCustomer);
+                    criteria = "phone";
+                    System.Console.WriteLine("Enter Customer Phone Number:");
+                    SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "4":
-                    criteria = "address";
-                    System.Console.WriteLine("Enter customer address:");
-                    value = System.Console.ReadLine();
-                    listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
-                    DisplaySearchResult(listOfSearchedCustomer);
+                    criteria = "email";
+                    System.Console.WriteLine("Enter Customer Email:");
+                    SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "3":
-                    criteria = "lname";
-                    System.Console.WriteLine("Enter customer last name:");
-                    value = System.Console.ReadLine();
-                    listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
-                    DisplaySearchResult(listOfSearchedCustomer);
+                    criteria = "address";
+                    System.Console.WriteLine("Enter Customer Address:");
+                    SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "2":
-                    criteria = "fname";
-                    System.Console.WriteLine("Enter customer first name:");
-                    value = System.Console.ReadLine();
-                    listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
-                    DisplaySearchResult(listOfSearchedCustomer);
+                    criteria = "lname";
+                    System.Console.WriteLine("Enter Customer Last Name:");
+                    SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "1":
-                    return MenuType.CustomersMenu;
+                    criteria = "fname";
+                    System.Console.WriteLine("Enter Customer First Name:");
+                    SearchAndDisplayCustomer(criteria);
+                    return MenuType.CustomersSearchMenu;
                 case "0":
-                    return MenuType.MainMenu;
+                    return MenuType.StoreFrontsCustomerMenu;
                 default:
                     Console.WriteLine("Input was not correct");
                     Console.WriteLine("Press Enter to continue");
                     Console.ReadLine();
-                    return MenuType.CustomersMenu;
+                    return MenuType.StoreFrontsMenu;
             }
 
 
         }
 
-        public void DisplaySearchResult(List<Customers> p_listOfSearchedCustomer)
+        public void SearchAndDisplayCustomer(string p_criteria)
         {
-            if (p_listOfSearchedCustomer == null)
+            bool repeat = true;
+            while(repeat)
             {
-                System.Console.WriteLine("----------------------------");
-                System.Console.WriteLine("There is no matching result.");
-            }
-            else
-            {
-                for(int i = 0; i < p_listOfSearchedCustomer.Count; i++)
+                try
                 {
-                    System.Console.WriteLine("[" + i + "]"+ p_listOfSearchedCustomer[i].ToString());
-                }                       
+                    value = Console.ReadLine().ToUpper();
+                    listOfSearchedCustomer = _customerBL.SearchCustomers(criteria, value);
+                    if (listOfSearchedCustomer.Count == 0)
+                    {
+                        System.Console.WriteLine("No Results.");
+                        System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                        string string0 = Console.ReadLine().ToLower();
+                        switch(string0)
+                        {
+                            case "quit":
+                            repeat = false;
+                            break;
+                            default:
+                            System.Console.WriteLine("Re-enter Your " + p_criteria + " Search Value: ");
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("-----------------------------------------------------------------------");
+                        System.Console.WriteLine("List of Results");
+                        foreach(Customers c in listOfSearchedCustomer)
+                        {
+                            System.Console.WriteLine(c.ToString());
+                        }
+                        repeat = false;
+                    }
+                }
+                catch(System.Exception)
+                {
+                    System.Console.WriteLine("Input Was Not Valid");
+                    System.Console.WriteLine("Customer Not Found");
+                    System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                    string string0 = Console.ReadLine().ToLower();
+                    switch(string0)
+                    {
+                        case "quit":
+                        repeat = false;
+                        break;
+                        default:
+                        System.Console.WriteLine("Re-enter Your " + p_criteria + " Search Value: ");
+                        break;
+                    }
+                }
             }
-        }
 
+        }
 
     }
 }

@@ -51,6 +51,9 @@ namespace SSDUI
                     case MenuType.StoreFrontsInventoryMenu:
                         storeMenu = menuFactory.GetMenu(MenuType.StoreFrontsInventoryMenu);
                         break;
+                    case MenuType.StoreFrontsOrderSearchMenu:
+                        storeMenu = menuFactory.GetMenu(MenuType.StoreFrontsOrderSearchMenu);
+                        break;
                     case MenuType.StoreFrontsSearchMenu:
                         storeMenu = menuFactory.GetMenu(MenuType.StoreFrontsSearchMenu);
                         break;

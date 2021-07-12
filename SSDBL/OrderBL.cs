@@ -22,5 +22,9 @@ namespace SSDBL
             return _repo.GetAllOrders();
         }
 
+        public List<Orders> SearchOrders(string p_criteria, string p_value)
+        {
+            return _repo.SearchOrders(p_criteria, p_value);
+        }
     }
 }

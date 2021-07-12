@@ -44,5 +44,44 @@ namespace SSDDL
                     }
             ).ToList();
         }
+
+        public List<Orders> SearchOrders(string p_criteria, string p_value)
+        {
+            List<Orders> listOfOrders = this.GetAllOrders();
+            List<Orders> listOfSearchedOrders = new List<Orders>();
+            int value = int.Parse(p_value);
+            switch(p_criteria)
+            {
+                case "id":
+                foreach (Orders o in listOfOrders)
+                {
+                    if(o.Id == value)
+                    {
+                        listOfSearchedOrders.Add(o);
+                    }
+                }
+                return listOfSearchedOrders;
+                case "customerID":
+                foreach (Orders o in listOfOrders)
+                {
+                    if(o.CustomerId == value)
+                    {
+                        listOfSearchedOrders.Add(o);
+                    }
+                }
+                return listOfSearchedOrders;
+                case "storeFrontID":
+                foreach (Orders o in listOfOrders)
+                {
+                    if(o.StoreFrontId == value)
+                    {
+                        listOfSearchedOrders.Add(o);
+                    }
+                }
+                return listOfSearchedOrders;
+                default:
+                return listOfSearchedOrders;
+            }
+        }
     }
 }

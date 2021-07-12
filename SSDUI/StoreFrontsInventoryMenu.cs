@@ -10,6 +10,7 @@ namespace SSDUI
         private static List<StoreFronts> ListOfSearchedStoreFront;
         private static List<Inventories> theInventories = new List<Inventories>();
         private static List<Products> listOfProducts = new List<Products>();
+        private List<int> productIDs = new List<int>();
         private static StoreFronts theStore;
         private IStoreFrontBL _sfBL;
         private IInventoryBL _invBL;
@@ -24,13 +25,29 @@ namespace SSDUI
         {
             if(theStore != null)
             {
+                listOfProducts = _prodBL.GetAllProducts();
+                productIDs = new List<int>();
+                foreach(Products p in listOfProducts)
+                {
+                    productIDs.Add(p.Id);
+                }
+                theInventories = new List<Inventories>();
+                List<Inventories> listOfInventories = _invBL.GetAllInventories();
+                foreach (Inventories inv in listOfInventories)
+                {
+                    if(inv.StoreFrontId == theStore.Id)
+                    {
+                        theInventories.Add(inv);
+                    }
+                }
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("Current Store :");
                 System.Console.WriteLine(theStore.ToString());
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("What Would You Like To Do?");
-                System.Console.WriteLine("[1] View The Store Inventory");
-                System.Console.WriteLine("[2] Replenish The Store Inventory");
+                System.Console.WriteLine("[1] View The Store Inventory/Products");
+                System.Console.WriteLine("[2] View List Of All Products");
+                System.Console.WriteLine("[3] Replenish The Store Inventory");
                 System.Console.WriteLine("[0] StoreFront Menu");
             }
             else
@@ -86,13 +103,28 @@ namespace SSDUI
                         }
                     }
                 }
+                listOfProducts = _prodBL.GetAllProducts();
+                productIDs = new List<int>();
+                foreach(Products p in listOfProducts)
+                {
+                    productIDs.Add(p.Id);
+                }
+                theInventories = new List<Inventories>();
+                List<Inventories> listOfInventories = _invBL.GetAllInventories();
+                foreach (Inventories inv in listOfInventories)
+                {
+                    if(inv.StoreFrontId == theStore.Id)
+                    {
+                        theInventories.Add(inv);
+                    }
+                }
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("The Store Succesfully Located!!!");
                 System.Console.WriteLine(theStore.ToString());
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("What Would You Like To Do?");
-                System.Console.WriteLine("[1] View The Store Inventory");
-                System.Console.WriteLine("[2] View List Of Products");
+                System.Console.WriteLine("[1] View The Store Inventory/Products");
+                System.Console.WriteLine("[2] View List Of All Products");
                 System.Console.WriteLine("[3] Replenish The Store Inventory");
                 System.Console.WriteLine("[0] StoreFront Menu");
             }
@@ -105,16 +137,6 @@ namespace SSDUI
             switch (userChoice)
             {
                 case "1":
-                    theInventories = new List<Inventories>();
-                    listOfProducts = _prodBL.GetAllProducts();
-                    List<Inventories> listOfInventories = _invBL.GetAllInventories();
-                    foreach (Inventories inv in listOfInventories)
-                    {
-                        if(inv.StoreFrontId == theStore.Id)
-                        {
-                            theInventories.Add(inv);
-                        }
-                    }
                     System.Console.WriteLine("-----------------------------------------------------------------------");
                     System.Console.WriteLine("Store " + theStore.Name + " Inventory");
                     for (int i = 0; i < theInventories.Count; i++)
@@ -127,6 +149,13 @@ namespace SSDUI
                     System.Console.WriteLine("-----------------------------------------------------------------------");
                     return MenuType.StoreFrontsInventoryMenu;
                 case "2":
+                    foreach (Products p in listOfProducts)
+                    {
+                        System.Console.WriteLine(p.ToString());
+                    }
+                    return MenuType.StoreFrontsInventoryMenu;
+                case "3":
+                    ReplenishInventory(theStore);
                     return MenuType.StoreFrontsInventoryMenu;
                 case "0":
                     theStore = null;
@@ -141,7 +170,116 @@ namespace SSDUI
 
         public void ReplenishInventory(StoreFronts p_sf)
         {
-
+            bool productFlag = true;
+            bool quantityFlag = true;
+            System.Console.WriteLine("Enter Product ID: ");
+            while(productFlag)
+            {
+                try
+                {
+                    string check = "addNewProduct";
+                    int productId = int.Parse(Console.ReadLine());
+                    if(!productIDs.Contains(productId))
+                    {
+                        System.Console.WriteLine("Product ID Was Not Valid");
+                        System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                        string string0 = Console.ReadLine().ToLower();
+                        switch(string0)
+                        {
+                            case "quit":
+                            productFlag = false;
+                            quantityFlag = false;
+                            break;
+                            default:
+                            System.Console.WriteLine("Re-enter Product ID: ");
+                            break;
+                        }
+                    }
+                    else if(productIDs.Contains(productId))
+                    {
+                        foreach(Inventories inv in theInventories)
+                        {
+                            if(inv.ProductId == productId)
+                            {
+                                check = "replenish";
+                            }
+                        }
+                        System.Console.WriteLine("Enter Product Quantity: ");
+                        quantityFlag = true;
+                        while(quantityFlag)
+                        {
+                            try
+                            {
+                                int quantity = int.Parse(Console.ReadLine());
+                                switch(check)
+                                {
+                                    case "addNewProduct":
+                                    _invBL.AddNewProductInventory(theStore.Id,productId,quantity);
+                                    System.Console.WriteLine("Product ID[" + productId + "] ||| Quantity: " + quantity +" Added");
+                                    break;
+                                    case "replenish":
+                                    _invBL.ReplenishInventory(theStore.Id,productId,quantity);
+                                    System.Console.WriteLine("Product ID[" + productId + "] ||| Quantity: " + quantity +" Added");
+                                    break;
+                                }
+                            
+                            }
+                            catch(System.Exception)
+                            {
+                                System.Console.WriteLine("Input Was Not Valid - Quantity Must Be A Number");
+                                System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                                string string1 = Console.ReadLine().ToLower();
+                                switch(string1)
+                                {
+                                    case "quit":
+                                    productFlag = false;
+                                    quantityFlag = false;
+                                    break;
+                                    default:
+                                    System.Console.WriteLine("Re-enter Quantity: ");
+                                    break;
+                                } 
+                            }
+                            System.Console.WriteLine("Would You Like To Keep Replenishing Inventory");
+                            System.Console.WriteLine("[1] Replenish The Store Inventory");
+                            System.Console.WriteLine("[0] Inventory Menu");
+                            string string0 = Console.ReadLine().ToLower();
+                            switch(string0)
+                            {
+                                case "1":
+                                System.Console.WriteLine("Enter Product ID: ");
+                                quantityFlag = false;
+                                break;
+                                case "0":
+                                productFlag = false;
+                                quantityFlag = false;
+                                break;
+                                default:
+                                productFlag = false;
+                                quantityFlag = false;
+                                break;
+                            } 
+                        }
+                    }
+                }
+                catch(System.Exception)
+                {
+                    System.Console.WriteLine("Input Was Not Valid - Product ID Must Be A Number");
+                    System.Console.WriteLine("Product ID Not Found");
+                    System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                    string string0 = Console.ReadLine().ToLower();
+                    switch(string0)
+                    {
+                        case "quit":
+                        productFlag = false;
+                        quantityFlag = false;
+                        break;
+                        default:
+                        System.Console.WriteLine("Re-enter Product ID: ");
+                        break;
+                    } 
+                }
+            }
         }
     }
 }

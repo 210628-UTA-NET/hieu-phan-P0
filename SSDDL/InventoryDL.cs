@@ -11,6 +11,29 @@ namespace SSDDL
         {
             _context = p_context;
         }
+
+        public void AddNewProductInventory(int p_sfId, int p_productId, int p_quantity)
+        {
+            _context.Inventories.Add(new Entities.Inventory{
+                    StoreFrontId = p_sfId,
+                    ProductId = p_productId,
+                    Quantity = p_quantity
+            });
+
+            _context.SaveChanges();
+        }
+        public void ReplenishInventory(int p_sfId, int p_productId, int p_quantity)
+        {
+            var theInv = (from invt in _context.Inventories
+                                where invt.StoreFrontId == p_sfId &&
+                                    invt.ProductId == p_productId
+                                select invt).First();
+            theInv.Quantity += p_quantity;
+
+            _context.SaveChanges();
+
+        }
+
         public List<Inventories> GetAllInventories()
         {
             return _context.Inventories.Select(
@@ -24,6 +47,7 @@ namespace SSDDL
                     }
             ).ToList();
         }
+
 
         public Inventories UpdateInventoryQuantity(Inventories p_inv, int p_quantity)
         {

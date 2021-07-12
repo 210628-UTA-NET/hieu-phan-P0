@@ -12,6 +12,7 @@ namespace SSDUI
         StoreFrontsSearchMenu,
         StoreFrontsCustomerMenu,
         StoreFrontsInventoryMenu,
+        StoreFrontsOrderSearchMenu,
         Exit
     }
     public interface IMenu

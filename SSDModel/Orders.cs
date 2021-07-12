@@ -20,7 +20,7 @@ namespace SSDModel
 
         public override string ToString()
         {
-            return $"Order ID: [{Id}] ||| StoreFrontID: {StoreFrontId} ||| Total Price: ${TotalPrice}";
+            return $"Order ID: [{Id}] ||| CustomerID: {CustomerId} ||| StoreFrontID: {StoreFrontId} ||| Total Price: ${TotalPrice}";
         }
     }
 }
