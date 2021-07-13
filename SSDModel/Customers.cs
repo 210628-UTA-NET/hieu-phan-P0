@@ -46,7 +46,7 @@ namespace SSDModel
             {
                 if (!Regex.IsMatch(value,@"^[A-Za-z .']+$"))
                 {
-                    throw new Exception("This Field can only contain letters");
+                    throw new Exception("Input Was Not Valid");
                 }
                 _lname = value;
             } 
@@ -64,14 +64,24 @@ namespace SSDModel
             {
                 if(!Regex.IsMatch(value,@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}"))
                 {
-                    throw new Exception("Number is not valid");
+                    throw new Exception("Input Was Not Valid");
                 }
                 _phone = value;
             }
         }
 
         public string City { get => _city; set => _city = value; }
-        public string State { get => _state; set => _state = value; }
+        public string State { 
+            get => _state; 
+            set 
+            {
+                if(!Regex.IsMatch(value,@"^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$"))
+                {
+                    throw new Exception("Input Was Not Valid");
+                }
+                _state = value;
+            }
+        }
 
         public override string ToString()
         {

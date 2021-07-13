@@ -16,6 +16,7 @@ namespace SSDUI
         
         public void Menu()
         {
+            System.Console.Clear();
             System.Console.WriteLine("-----------------------------------------------------------------------");
             System.Console.WriteLine("Welcome to StoreFront Menu!");
             System.Console.WriteLine("What would you like to do?");
@@ -24,20 +25,25 @@ namespace SSDUI
             System.Console.WriteLine("[3] Inventory Menu");
             System.Console.WriteLine("[4] Customer Menu");
             System.Console.WriteLine("[0] Main Menu");
+            System.Console.WriteLine("-----------------------------------------------------------------------");
         }
 
         public MenuType YourChoice()
         {
+            System.Console.Write("Enter Your Choice: ");
             string userChoice = Console.ReadLine();
 
             switch (userChoice)
             {
                 case "1":
+                    System.Console.Clear();
                     ListOfAllStoreFronts = _sfBL.GetAllStoreFronts();
                     foreach (StoreFronts sf in ListOfAllStoreFronts)
                     {
                         System.Console.WriteLine(sf.ToString());
                     }
+                    System.Console.Write("Enter To Continue");
+                    System.Console.ReadLine();
                     return MenuType.StoreFrontsMenu;
                 case "2":
                     return MenuType.StoreFrontsSearchMenu;

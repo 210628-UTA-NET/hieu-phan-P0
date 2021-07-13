@@ -40,6 +40,7 @@ namespace SSDUI
                         theInventories.Add(inv);
                     }
                 }
+                System.Console.Clear();
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("Current Store :");
                 System.Console.WriteLine(theStore.ToString());
@@ -48,13 +49,15 @@ namespace SSDUI
                 System.Console.WriteLine("[1] View The Store Inventory/Products");
                 System.Console.WriteLine("[2] View List Of All Products");
                 System.Console.WriteLine("[3] Replenish The Store Inventory");
-                System.Console.WriteLine("[0] StoreFront Menu");
+                System.Console.WriteLine("[0] Go Back");
+                System.Console.WriteLine("-----------------------------------------------------------------------");
             }
             else
             {
+                System.Console.Clear();
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("Welcome To Store Front Inventory Menu!!!");
-                System.Console.WriteLine("Please Select A StoreFront Using Its ID:");
+                System.Console.Write("Please Select A StoreFront Using Its [ID]: ");
                 bool repeat = true;
                 while(repeat)
                 {
@@ -71,9 +74,10 @@ namespace SSDUI
                             {
                                 case "quit":
                                 repeat = false;
+                                theStore = null;
                                 break;
                                 default:
-                                System.Console.WriteLine("Re-enter StoreFront ID: ");
+                                System.Console.Write("Re-enter StoreFront ID: ");
                                 break;
                             }
                         }
@@ -96,47 +100,60 @@ namespace SSDUI
                         {
                             case "quit":
                             repeat = false;
+                            theStore = null;
                             break;
                             default:
-                            System.Console.WriteLine("Re-enter StoreFront ID: ");
+                            System.Console.Write("Re-enter StoreFront ID: ");
                             break;
                         }
                     }
                 }
-                listOfProducts = _prodBL.GetAllProducts();
-                productIDs = new List<int>();
-                foreach(Products p in listOfProducts)
+
+                if(theStore == null)
                 {
-                    productIDs.Add(p.Id);
+                    System.Console.WriteLine("[0] Go Back");
                 }
-                theInventories = new List<Inventories>();
-                List<Inventories> listOfInventories = _invBL.GetAllInventories();
-                foreach (Inventories inv in listOfInventories)
+                else if(theStore != null)
                 {
-                    if(inv.StoreFrontId == theStore.Id)
+                    listOfProducts = _prodBL.GetAllProducts();
+                    productIDs = new List<int>();
+                    foreach(Products p in listOfProducts)
                     {
-                        theInventories.Add(inv);
+                        productIDs.Add(p.Id);
                     }
+                    theInventories = new List<Inventories>();
+                    List<Inventories> listOfInventories = _invBL.GetAllInventories();
+                    foreach (Inventories inv in listOfInventories)
+                    {
+                        if(inv.StoreFrontId == theStore.Id)
+                        {
+                            theInventories.Add(inv);
+                        }
+                    }
+                    System.Console.Clear();
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
+                    System.Console.WriteLine("The Store Succesfully Located!!!");
+                    System.Console.WriteLine(theStore.ToString());
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
+                    System.Console.WriteLine("What Would You Like To Do?");
+                    System.Console.WriteLine("[1] View The Store Inventory/Products");
+                    System.Console.WriteLine("[2] View List Of All Products");
+                    System.Console.WriteLine("[3] Replenish The Store Inventory");
+                    System.Console.WriteLine("[0] Go Back");
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
                 }
-                System.Console.WriteLine("-----------------------------------------------------------------------");
-                System.Console.WriteLine("The Store Succesfully Located!!!");
-                System.Console.WriteLine(theStore.ToString());
-                System.Console.WriteLine("-----------------------------------------------------------------------");
-                System.Console.WriteLine("What Would You Like To Do?");
-                System.Console.WriteLine("[1] View The Store Inventory/Products");
-                System.Console.WriteLine("[2] View List Of All Products");
-                System.Console.WriteLine("[3] Replenish The Store Inventory");
-                System.Console.WriteLine("[0] StoreFront Menu");
             }
         }
 
         public MenuType YourChoice()
         {
+            System.Console.Write("Enter Your Choice: ");
             string userChoice = Console.ReadLine();
 
             switch (userChoice)
             {
                 case "1":
+                    System.Console.Clear();
                     System.Console.WriteLine("-----------------------------------------------------------------------");
                     System.Console.WriteLine("Store " + theStore.Name + " Inventory");
                     for (int i = 0; i < theInventories.Count; i++)
@@ -147,12 +164,19 @@ namespace SSDUI
                                                     " ||| Inventory Quantity: " + theInventories[i].Quantity);
                     }
                     System.Console.WriteLine("-----------------------------------------------------------------------");
+                    System.Console.Write("Enter To Continue");
+                    System.Console.ReadLine();
                     return MenuType.StoreFrontsInventoryMenu;
                 case "2":
+                    System.Console.Clear();
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
                     foreach (Products p in listOfProducts)
                     {
                         System.Console.WriteLine(p.ToString());
                     }
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
+                    System.Console.Write("Enter To Continue");
+                    System.Console.ReadLine();
                     return MenuType.StoreFrontsInventoryMenu;
                 case "3":
                     ReplenishInventory(theStore);
@@ -172,7 +196,7 @@ namespace SSDUI
         {
             bool productFlag = true;
             bool quantityFlag = true;
-            System.Console.WriteLine("Enter Product ID: ");
+            System.Console.Write("Enter Product [ID]: ");
             while(productFlag)
             {
                 try
@@ -191,7 +215,7 @@ namespace SSDUI
                             quantityFlag = false;
                             break;
                             default:
-                            System.Console.WriteLine("Re-enter Product ID: ");
+                            System.Console.Write("Re-enter Product [ID]: ");
                             break;
                         }
                     }
@@ -204,7 +228,7 @@ namespace SSDUI
                                 check = "replenish";
                             }
                         }
-                        System.Console.WriteLine("Enter Product Quantity: ");
+                        System.Console.Write("Enter Product Quantity: ");
                         quantityFlag = true;
                         while(quantityFlag)
                         {
@@ -215,11 +239,17 @@ namespace SSDUI
                                 {
                                     case "addNewProduct":
                                     _invBL.AddNewProductInventory(theStore.Id,productId,quantity);
-                                    System.Console.WriteLine("Product ID[" + productId + "] ||| Quantity: " + quantity +" Added");
+                                    System.Console.Clear();
+                                    System.Console.WriteLine("-----------------------------------------------------------------------");
+                                    System.Console.WriteLine("Product ID[" + productId + "] ||| Quantity: " + quantity +" (Added)");
+                                    System.Console.WriteLine("-----------------------------------------------------------------------");
                                     break;
                                     case "replenish":
                                     _invBL.ReplenishInventory(theStore.Id,productId,quantity);
-                                    System.Console.WriteLine("Product ID[" + productId + "] ||| Quantity: " + quantity +" Added");
+                                    System.Console.Clear();
+                                    System.Console.WriteLine("-----------------------------------------------------------------------");
+                                    System.Console.WriteLine("Product ID[" + productId + "] ||| Quantity: " + quantity +" (Replenished)");
+                                    System.Console.WriteLine("-----------------------------------------------------------------------");
                                     break;
                                 }
                             
@@ -236,18 +266,18 @@ namespace SSDUI
                                     quantityFlag = false;
                                     break;
                                     default:
-                                    System.Console.WriteLine("Re-enter Quantity: ");
+                                    System.Console.Write("Re-enter Quantity: ");
                                     break;
                                 } 
                             }
-                            System.Console.WriteLine("Would You Like To Keep Replenishing Inventory");
-                            System.Console.WriteLine("[1] Replenish The Store Inventory");
-                            System.Console.WriteLine("[0] Inventory Menu");
+                            System.Console.WriteLine("What Would You Like To Do?");
+                            System.Console.WriteLine("[1] Replenish Inventory");
+                            System.Console.WriteLine("[0] Go Back");
                             string string0 = Console.ReadLine().ToLower();
                             switch(string0)
                             {
                                 case "1":
-                                System.Console.WriteLine("Enter Product ID: ");
+                                System.Console.Write("Enter Product [ID]: ");
                                 quantityFlag = false;
                                 break;
                                 case "0":
@@ -275,7 +305,7 @@ namespace SSDUI
                         quantityFlag = false;
                         break;
                         default:
-                        System.Console.WriteLine("Re-enter Product ID: ");
+                        System.Console.Write("Re-enter Product ID: ");
                         break;
                     } 
                 }

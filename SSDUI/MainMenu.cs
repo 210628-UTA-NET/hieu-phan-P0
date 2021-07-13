@@ -5,16 +5,19 @@ namespace SSDUI
     {
         public void Menu()
         {
+            System.Console.Clear();
             System.Console.WriteLine("-----------------------------------------------------------------------");
             System.Console.WriteLine("Welcome to MainMenu!");
             System.Console.WriteLine("What would you like to do?");
             System.Console.WriteLine("[1] Customers Menu");
             System.Console.WriteLine("[2] StoreFronts Menu");
             System.Console.WriteLine("[0] Exit");
+            System.Console.WriteLine("-----------------------------------------------------------------------");
         }
 
         public MenuType YourChoice()
         {
+            System.Console.Write("Enter Your Choice: ");
             string userInput = Console.ReadLine();
 
             switch (userInput)

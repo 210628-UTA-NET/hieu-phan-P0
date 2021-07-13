@@ -9,6 +9,7 @@ namespace SSDUI
     {
         private static Customers _newCustomer = new Customers();
         private ICustomerBL _customerBL;
+        private string value;
 
         public AddCustomerMenu(ICustomerBL p_customerBL)
         {
@@ -29,79 +30,94 @@ namespace SSDUI
             System.Console.WriteLine("[7] Phone      - " + _newCustomer.Phone);
             System.Console.WriteLine("[8] Add Customer");
             System.Console.WriteLine("[9] Empty All Fields");
-            System.Console.WriteLine("[0] MainMenu");                        
+            System.Console.WriteLine("[0] Main Menu");                        
         }
 
         public MenuType YourChoice()
         {
+            System.Console.Write("Enter Your Choice: ");
             string userChoice = Console.ReadLine();
 
             switch (userChoice)
             {
                 
                 case "1":
-                    _newCustomer.Fname = Console.ReadLine().ToUpper();
-                    while(!Regex.IsMatch(_newCustomer.Fname,@"^[A-Za-z]+$"))
+                    System.Console.Write("Enter Your Input: ");
+                    value = Console.ReadLine().ToUpper();
+                    while(!Regex.IsMatch(value,@"^[A-Za-z]+$"))
                     {
                         System.Console.WriteLine("Attention: Invalid Input");
-                        System.Console.WriteLine("Re-enter Customer's First Name: ");
-                        _newCustomer.Fname = Console.ReadLine().ToUpper();
+                        System.Console.Write("Re-enter Customer's First Name: ");
+                        value = Console.ReadLine().ToUpper();
                     }
+                    _newCustomer.Fname = value;
                     System.Console.WriteLine();
                     return MenuType.AddCustomerMenu;
                 case "2":
-                    _newCustomer.Lname = Console.ReadLine().ToUpper();
-                    while(!Regex.IsMatch(_newCustomer.Lname,@"^[A-Za-z]+$"))
+                    System.Console.Write("Enter Your Input: ");
+                    value = Console.ReadLine().ToUpper();
+                    while(!Regex.IsMatch(value,@"^[A-Za-z]+$"))
                     {
                         System.Console.WriteLine("Attention: Invalid Input");
-                        System.Console.WriteLine("Re-enter Customer's Last Name: ");
-                        _newCustomer.Lname = Console.ReadLine().ToUpper();
+                        System.Console.Write("Re-enter Customer's Last Name: ");
+                        value = Console.ReadLine().ToUpper();
                     }
+                    _newCustomer.Lname = value;
                     return MenuType.AddCustomerMenu;
                 case "3":
-                    _newCustomer.Address = Console.ReadLine();
-                    while(!Regex.IsMatch(_newCustomer.Address,@"^[A-Za-z0-9 .,-]+$"))
+                    System.Console.Write("Enter Your Input: ");
+                    value = Console.ReadLine().ToUpper();
+                    while(!Regex.IsMatch(value,@"^[A-Za-z0-9 .,-]+$"))
                     {
                         System.Console.WriteLine("Attention: Invalid Input");
-                        System.Console.WriteLine("Re-enter Customer's Address: ");
-                        _newCustomer.Address = Console.ReadLine();
+                        System.Console.Write("Re-enter Customer's Address: ");
+                        value = Console.ReadLine().ToUpper();
                     }
+                    _newCustomer.Address = value;
                     return MenuType.AddCustomerMenu;
                 case "4":
-                    _newCustomer.City = Console.ReadLine();
-                    while(!Regex.IsMatch(_newCustomer.City,@"^[A-Za-z .-]+$"))
+                    System.Console.Write("Enter Your Input: ");
+                    value = Console.ReadLine().ToUpper();
+                    while(!Regex.IsMatch(value,@"^[A-Za-z .-]+$"))
                     {
                         System.Console.WriteLine("Attention: Invalid Input");
-                        System.Console.WriteLine("Re-enter Customer's City: ");
-                        _newCustomer.City = Console.ReadLine();
+                        System.Console.Write("Re-enter Customer's City: ");
+                        value = Console.ReadLine().ToUpper();
                     }
+                    _newCustomer.City = value;
                     return MenuType.AddCustomerMenu;
                 case "5":
-                    _newCustomer.State = Console.ReadLine();
-                    while(!Regex.IsMatch(_newCustomer.State,@"^[A-Za-z]+$"))
+                    System.Console.Write("Enter Your Input: ");
+                    value = Console.ReadLine().ToUpper();
+                    while(!Regex.IsMatch(value,@"^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$"))
                     {
                         System.Console.WriteLine("Attention: Invalid Input");
-                        System.Console.WriteLine("Re-enter Customer's State: ");
-                        _newCustomer.State = Console.ReadLine();
+                        System.Console.Write("Re-enter Customer's State: ");
+                        value = Console.ReadLine().ToUpper();
                     }
+                    _newCustomer.State = value;
                     return MenuType.AddCustomerMenu;
                 case "6":
-                    _newCustomer.Email = Console.ReadLine();
-                    while(!Regex.IsMatch(_newCustomer.Email,@"^[A-Za-z0-9.@]+$"))
+                    System.Console.Write("Enter Your Input: ");
+                    value = Console.ReadLine();
+                    while(!Regex.IsMatch(value,@"^[A-Za-z0-9.@]+$"))
                     {
                         System.Console.WriteLine("Attention: Invalid Input");
-                        System.Console.WriteLine("Re-enter Customer's Email: ");
-                        _newCustomer.Email = Console.ReadLine();
+                        System.Console.Write("Re-enter Customer's Email: ");
+                        value = Console.ReadLine();
                     }
+                    _newCustomer.Email = value;
                     return MenuType.AddCustomerMenu;
                 case "7":
-                    _newCustomer.Phone = Console.ReadLine();
-                    while(!Regex.IsMatch(_newCustomer.Phone,@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}"))
+                    System.Console.Write("Enter Your Input: ");
+                    value = Console.ReadLine();
+                    while(!Regex.IsMatch(value,@"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}"))
                     {
                         System.Console.WriteLine("Attention: Invalid Input");
-                        System.Console.WriteLine("Re-enter Customer's Phone: ");
-                        _newCustomer.Phone = Console.ReadLine();
+                        System.Console.Write("Re-enter Customer's Phone: ");
+                        value = Console.ReadLine();
                     }
+                    _newCustomer.Phone = value;
                     return MenuType.AddCustomerMenu;
                 case "8":
                     try{
@@ -112,7 +128,9 @@ namespace SSDUI
                         System.Console.WriteLine("Cannot Add Customer");
                         System.Console.WriteLine(e);
                     }
-                    System.Console.WriteLine("Customer was entered succesfully!!!");
+                    System.Console.WriteLine("Customer Was Created Succesfully!!!");
+                    System.Console.Write("Enter To Continue");
+                    System.Console.ReadLine();
                     _newCustomer = new Customers();
                     return MenuType.MainMenu;
                 case "9":
@@ -125,7 +143,7 @@ namespace SSDUI
                     Console.WriteLine("Input was not correct");
                     Console.WriteLine("Press Enter to continue");
                     Console.ReadLine();
-                    return MenuType.CustomersMenu;
+                    return MenuType.AddCustomerMenu;
             } 
         }
     }

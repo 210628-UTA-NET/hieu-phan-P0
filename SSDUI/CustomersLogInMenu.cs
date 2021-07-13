@@ -10,6 +10,8 @@ namespace SSDUI
         private static StoreFronts theStore;
         private static List<Inventories> theInventories = new List<Inventories>();
         private static List<Products> listOfProducts = new List<Products>();
+        // private static List<int> orderedQuantities = new List<int>();
+        // private static List<int> orderedProductID = new List<int>();
         private ICustomerBL _customerBL;
         private IStoreFrontBL _sfBL;
         private IInventoryBL _invBL;
@@ -31,66 +33,38 @@ namespace SSDUI
         
         public void Menu()
         {
+            
             listOfProducts = _prodBL.GetAllProducts();
             if (theCustomer != null)
-            {
+            {   
+                System.Console.Clear();
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("Welcome " + theCustomer.Fname + ",");
                 System.Console.WriteLine("What would you like to do next?");
-                System.Console.WriteLine("[2] View Order History");
                 System.Console.WriteLine("[1] Place an Order");
+                System.Console.WriteLine("[2] View Order History");
                 System.Console.WriteLine("[0] Log Out");
+                System.Console.WriteLine("-----------------------------------------------------------------------");
             }
 
             else
             {
-
-            System.Console.WriteLine("-----------------------------------------------------------------------");
-            System.Console.WriteLine("Welcome To Customer Sign In Menu!!!");
-            System.Console.WriteLine("Please Use Your ID and First Name To Sign In");
-            int customerId;
-            string fname = "";
-            bool flag = true;
-            System.Console.WriteLine("Enter Your ID: ");
-            while(flag)
-            {
-                try
+                System.Console.Clear();
+                System.Console.WriteLine("-----------------------------------------------------------------------");
+                System.Console.WriteLine("Welcome To Customer Sign In Menu!!!");
+                System.Console.WriteLine("Please Use Your ID and First Name To Sign In");
+                int customerId;
+                string fname = "";
+                bool flag = true;
+                System.Console.WriteLine("Enter Your ID: ");
+                while(flag)
                 {
-                customerId = int.Parse(Console.ReadLine());                
-                theCustomer = _customerBL.GetACustomer(customerId);
-                if (theCustomer.Id != customerId)
-                {
-                    System.Console.WriteLine("Customer Not Found");
-                    System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
-                    string string0 = Console.ReadLine().ToLower();
-                    switch(string0)
+                    try
                     {
-                        case "quit":
-                        flag = false;
-                        theCustomer = null;
-                        break;
-                        default:
-                        System.Console.WriteLine("Re-enter Your ID: ");
-                        break;
-                    }
-                }
-                else if (theCustomer.Id == customerId)
-                {
-                    System.Console.WriteLine("Enter Your Name: ");
-                    fname = Console.ReadLine().ToUpper();
-                    if(theCustomer.Fname == fname)
+                    customerId = int.Parse(Console.ReadLine());                
+                    theCustomer = _customerBL.GetACustomer(customerId);
+                    if (theCustomer.Id != customerId)
                     {
-                        flag = false;
-                        System.Console.WriteLine("Log In Successful !!!");
-                        System.Console.WriteLine("-----------------------------------------------------------------------");
-                        System.Console.WriteLine("Welcome " + theCustomer.Fname + ",");
-                        System.Console.WriteLine("What would you like to do next?");
-                        System.Console.WriteLine("[2] View Order History");
-                        System.Console.WriteLine("[1] Place an Order");
-                        System.Console.WriteLine("[0] Log Out");
-                    }
-                    else if (theCustomer.Fname != fname)
-                    {                       
                         System.Console.WriteLine("Customer Not Found");
                         System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
                         string string0 = Console.ReadLine().ToLower();
@@ -101,40 +75,73 @@ namespace SSDUI
                             theCustomer = null;
                             break;
                             default:
-                            System.Console.WriteLine("Re-enter Your Name: ");
+                            System.Console.WriteLine("Re-enter Your ID: ");
                             break;
                         }
-                    }                    
-                }
-                }
-                catch(System.Exception)
-                {
-                    System.Console.WriteLine("Input was not valid - Id Must Be A Number");
-                    System.Console.WriteLine("Customer Not Found");
-                    System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
-                    string string0 = Console.ReadLine().ToLower();
-                    switch(string0)
+                    }
+                    else if (theCustomer.Id == customerId)
                     {
-                        case "quit":
-                        flag = false;
-                        break;
-                        default:
-                        System.Console.WriteLine("Re-enter Your ID: ");
-                        break;
-                    }                   
+                        System.Console.WriteLine("Enter Your Name: ");
+                        fname = Console.ReadLine().ToUpper();
+                        if(theCustomer.Fname == fname)
+                        {
+                            flag = false;
+                            System.Console.Clear();
+                            System.Console.WriteLine("-----------------------------------------------------------------------");
+                            System.Console.WriteLine("Welcome " + theCustomer.Fname + ",");
+                            System.Console.WriteLine("What would you like to do next?");
+                            System.Console.WriteLine("[1] Place an Order");
+                            System.Console.WriteLine("[2] View Order History");
+                            System.Console.WriteLine("[0] Log Out");
+                        }
+                        else if (theCustomer.Fname != fname)
+                        {                       
+                            System.Console.WriteLine("Customer Not Found");
+                            System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                            string string0 = Console.ReadLine().ToLower();
+                            switch(string0)
+                            {
+                                case "quit":
+                                flag = false;
+                                theCustomer = null;
+                                break;
+                                default:
+                                System.Console.WriteLine("Re-enter Your ID: ");
+                                break;
+                            }
+                        }                    
+                    }
+                    }
+                    catch(System.Exception)
+                    {
+                        System.Console.WriteLine("Input was not valid - Id Must Be A Number");
+                        System.Console.WriteLine("Customer Not Found");
+                        System.Console.WriteLine("Enter To Continue or 'quit' To Quit");
+                        string string0 = Console.ReadLine().ToLower();
+                        switch(string0)
+                        {
+                            case "quit":
+                            flag = false;
+                            theCustomer = null;
+                            break;
+                            default:
+                            System.Console.WriteLine("Re-enter Your ID: ");
+                            break;
+                        }                   
+                    }
                 }
-            }
 
-            if(theCustomer == null)
-            {
-                System.Console.WriteLine("-----------------------------------------------------------------------");
-                System.Console.WriteLine("[0] Customer Menu");
-            }
+                if(theCustomer == null)
+                {
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
+                    System.Console.WriteLine("[0] Customer Menu");
+                }
             }
         }
 
         public MenuType YourChoice()
         {
+            System.Console.Write("Enter Your Choice: ");
             string userChoice = Console.ReadLine();
 
             switch (userChoice)
@@ -159,10 +166,11 @@ namespace SSDUI
         public void ViewOrderHistory(Customers p_customer)
         {
             //Get all orders with cust ID
-
+            
             List<Orders> listOfOrders = new List<Orders>();
             listOfOrders = _orderBL.GetAllOrders();
             List<Orders> myListOfOrders =new List<Orders>();
+            System.Console.Clear();
             System.Console.WriteLine("-----------------------------------------------------------------------");
             foreach(Orders o in listOfOrders)
             {
@@ -171,7 +179,13 @@ namespace SSDUI
                     myListOfOrders.Add(o);
                 }
             }
-            if (myListOfOrders.Count > 0)
+            if (myListOfOrders.Count == 0)
+            {
+                System.Console.WriteLine("You Have No Orders");
+                System.Console.Write("Enter To Go Back");
+                System.Console.ReadLine();
+            }
+            else if (myListOfOrders.Count > 0)
             {
                 foreach (Orders o in myListOfOrders)
                 {
@@ -203,6 +217,8 @@ namespace SSDUI
                                     total = o.TotalPrice;
                                 }
                             }
+                            System.Console.Clear();
+                            System.Console.WriteLine("-----------------------------------------------------------------------");
                             foreach(LineItems li in lineItems)
                             {
                                 foreach(Products p in listOfProducts)
@@ -217,6 +233,8 @@ namespace SSDUI
                                 }
                             }
                             System.Console.WriteLine("-----------------------------------------------------------------------Order Total: $" + total);
+                            System.Console.Write("Enter To Continue");
+                            System.Console.ReadLine();
                             orderFlag = false;
                         }
                         catch(System.Exception)
@@ -255,7 +273,7 @@ namespace SSDUI
             bool productFlag = true;
             bool quantityFlag = true;
             //Find a store
-            System.Console.WriteLine("Enter A Store ID: ");
+            System.Console.Write("Enter A Store ID: ");
             while(storeFlag)
             {
                 try
@@ -292,6 +310,7 @@ namespace SSDUI
                                 theInventories.Add(inv);
                             }
                         }
+                        System.Console.Clear();
                         System.Console.WriteLine("-----------------------------------------------------------------------");
                         System.Console.WriteLine("Store " + theStore.Name + " Inventory");
                         for (int i = 0; i < theInventories.Count; i++)
@@ -314,7 +333,7 @@ namespace SSDUI
                             availableProductId.Add(inv.ProductId);
                         }
                         System.Console.WriteLine("What Product Would You Like To Order?");
-                        System.Console.WriteLine("Use Product ID To Select Product :");
+                        System.Console.Write("Use Product ID To Select Product: ");
                         while(productFlag)
                         {
                             try
@@ -360,7 +379,7 @@ namespace SSDUI
                                     }
 
                                     System.Console.WriteLine(theProduct.ToString()+ " Available Quantity: " + theProductInventory.Quantity);
-                                    System.Console.WriteLine("Enter Your Quantity: ");
+                                    System.Console.Write("Enter Your Quantity: ");
                                     quantityFlag = true;
                                     while(quantityFlag)
                                     {
@@ -384,6 +403,12 @@ namespace SSDUI
                                                     break;
                                                 }
                                             }
+                                            else if (theProductInventory.Quantity == 0)
+                                            {
+                                                System.Console.WriteLine("Out Of Stock");
+                                                System.Console.Write("Select Another Product [ID]: ");
+                                                quantityFlag = false;
+                                            }
                                             else if(quantity > 0 && quantity <= theProductInventory.Quantity)
                                             {
                                                 //Create a new LineItem and add to a list
@@ -391,6 +416,9 @@ namespace SSDUI
                                                 lineItem.Quantity = quantity;
                                                 lineItems.Add(lineItem);
                                                 total += (theProduct.Price * quantity);
+            
+                                                System.Console.Clear();
+                                                System.Console.WriteLine("-----------------------------------------------------------------------");
                                                 System.Console.WriteLine("Product Name: " + theProduct.Name +
                                                                         " ||| Product Price: $" + theProduct.Price +
                                                                         " ||| Purchasing Quantity: " + quantity +
@@ -406,10 +434,12 @@ namespace SSDUI
                                                 System.Console.WriteLine("[2] Empty Cart");
                                                 System.Console.WriteLine("[3] Check Out");
                                                 System.Console.WriteLine("[0] Exit");
+                                                System.Console.Write("Enter Your Choice: ");
                                                 string string1 = Console.ReadLine();
                                                 switch(string1)
                                                 {
                                                     case "1":
+                                                        System.Console.Clear();
                                                         System.Console.WriteLine("-----------------------------------------------------------------------");
                                                         System.Console.WriteLine("Store " + theStore.Name + " Inventory");
                                                         for (int i = 0; i < theInventories.Count; i++)
@@ -425,6 +455,7 @@ namespace SSDUI
                                                     case "2":
                                                         lineItems.Clear();
                                                         total = 0.0;
+                                                        System.Console.Clear();
                                                         System.Console.WriteLine("-----------------------------------------------------------------------");
                                                         System.Console.WriteLine("You have " + lineItems.Count + " line item(s)");
                                                         System.Console.WriteLine("Your Total Is: $" + total);
@@ -470,6 +501,7 @@ namespace SSDUI
                                                             }
                                                         }
                                                         //Print The Order Detail
+                                                        Console.Clear();
                                                         System.Console.WriteLine("-----------------------------------------------------------------------");
                                                         System.Console.WriteLine("Order Submitted Successfully!!!");
                                                         System.Console.WriteLine("Order Detail:");
@@ -487,6 +519,8 @@ namespace SSDUI
                                                             }
                                                         }
                                                         System.Console.WriteLine("-----------------------------------------------------------------------Order Total: $" + newOrder.TotalPrice);
+                                                        System.Console.Write("Enter To Continue");
+                                                        System.Console.ReadLine();
                                                         lineItems.Clear();
                                                     break;
                                                     case "0":

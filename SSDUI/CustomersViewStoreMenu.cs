@@ -19,7 +19,7 @@ namespace SSDUI
             System.Console.WriteLine("What would you like to do?");
             System.Console.WriteLine("[1]View All Stores");
             System.Console.WriteLine("[2]Search For A Store");
-            System.Console.WriteLine("[0]Customer Menu");
+            System.Console.WriteLine("[0]Go Back");
         }
 
         public MenuType YourChoice()

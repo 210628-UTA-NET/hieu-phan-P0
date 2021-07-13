@@ -19,7 +19,8 @@ namespace SSDUI
 
         public void Menu()
         {
-            System.Console.WriteLine("-------------------------------------");
+            System.Console.Clear();
+            System.Console.WriteLine("-----------------------------------------------------------------------");
             System.Console.WriteLine("Welcome to Customer Searching Menu!!!");
             System.Console.WriteLine("Please pick a searching criteria");
             System.Console.WriteLine("[1] Using First Name");
@@ -27,38 +28,39 @@ namespace SSDUI
             System.Console.WriteLine("[3] Using Address");
             System.Console.WriteLine("[4] Using Email");
             System.Console.WriteLine("[5] Using Phone Number");
-            System.Console.WriteLine("[0] Store Front Customer Menu");
-            System.Console.WriteLine("-------------------------------------");
+            System.Console.WriteLine("[0] Go Back");
+            System.Console.WriteLine("-----------------------------------------------------------------------");
         }
 
         public MenuType YourChoice()
         {
+            System.Console.Write("Enter Your Choice: ");
             string userChoice = Console.ReadLine();
             switch (userChoice)
             {
                 case "5":
                     criteria = "phone";
-                    System.Console.WriteLine("Enter Customer Phone Number:");
+                    System.Console.Write("Enter Customer's Phone Number: ");
                     SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "4":
                     criteria = "email";
-                    System.Console.WriteLine("Enter Customer Email:");
+                    System.Console.Write("Enter Customer's Email: ");
                     SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "3":
                     criteria = "address";
-                    System.Console.WriteLine("Enter Customer Address:");
+                    System.Console.Write("Enter Customer's Address: ");
                     SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "2":
                     criteria = "lname";
-                    System.Console.WriteLine("Enter Customer Last Name:");
+                    System.Console.Write("Enter Customer's Last Name: ");
                     SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "1":
                     criteria = "fname";
-                    System.Console.WriteLine("Enter Customer First Name:");
+                    System.Console.Write("Enter Customer's First Name: ");
                     SearchAndDisplayCustomer(criteria);
                     return MenuType.CustomersSearchMenu;
                 case "0":
@@ -99,12 +101,16 @@ namespace SSDUI
                     }
                     else
                     {
+                        System.Console.Clear();
                         System.Console.WriteLine("-----------------------------------------------------------------------");
                         System.Console.WriteLine("List of Results");
                         foreach(Customers c in listOfSearchedCustomer)
                         {
                             System.Console.WriteLine(c.ToString());
                         }
+                        System.Console.WriteLine("-----------------------------------------------------------------------");
+                        System.Console.Write("Enter To Continue");
+                        System.Console.ReadLine();
                         repeat = false;
                     }
                 }

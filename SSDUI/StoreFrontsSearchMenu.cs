@@ -17,6 +17,7 @@ namespace SSDUI
         }
         public void Menu()
         {
+            System.Console.Clear();
             System.Console.WriteLine("-----------------------------------------------------------------------");
             System.Console.WriteLine("Welcome to Store Front Searching Menu!!!");
             System.Console.WriteLine("Please pick a searching criteria");
@@ -26,36 +27,43 @@ namespace SSDUI
             System.Console.WriteLine("[4] City");
             System.Console.WriteLine("[5] State");
             System.Console.WriteLine("[0] Main Menu");
+            System.Console.WriteLine("-----------------------------------------------------------------------");
         }
 
         public MenuType YourChoice()
         {
+            System.Console.Write("Enter Your Choice: ");
             string userChoice = Console.ReadLine();
             switch (userChoice)
             {
                 case "1":
                     criteria = "id";
-                    System.Console.WriteLine("Enter Store Front Id:");
+                    System.Console.Clear();
+                    System.Console.Write("Enter Store Front's Id: ");
                     SearchAndDisplayStoreFront(criteria);
                     return MenuType.StoreFrontsSearchMenu;
                 case "2":
                     criteria = "name";
-                    System.Console.WriteLine("Enter Store Front Name:");
+                    System.Console.Clear();
+                    System.Console.Write("Enter Store Front's Name: ");
                     SearchAndDisplayStoreFront(criteria);
                     return MenuType.StoreFrontsSearchMenu;
                 case "3":
                     criteria = "address";
-                    System.Console.WriteLine("Enter StoreFront Address:");
+                    System.Console.Clear();
+                    System.Console.Write("Enter StoreFront's Address: ");
                     SearchAndDisplayStoreFront(criteria);
                     return MenuType.StoreFrontsSearchMenu;
                 case "4":
                     criteria = "city";
-                    System.Console.WriteLine("Enter StoreFront City:");
+                    System.Console.Clear();
+                    System.Console.Write("Enter StoreFronts' City: ");
                     SearchAndDisplayStoreFront(criteria);
                     return MenuType.StoreFrontsSearchMenu;
                 case "5":
                     criteria = "state";
-                    System.Console.WriteLine("Enter StoreFront State:");
+                    System.Console.Clear();
+                    System.Console.Write("Enter StoreFronts' State: ");
                     SearchAndDisplayStoreFront(criteria);
                     return MenuType.StoreFrontsSearchMenu;
                 case "0":
@@ -95,12 +103,16 @@ namespace SSDUI
                     }
                     else
                     {
+                        System.Console.Clear();
                         System.Console.WriteLine("-----------------------------------------------------------------------");
                         System.Console.WriteLine("List of Results");
                         foreach(StoreFronts sf in ListOfSearchedStoreFront)
                         {
                             System.Console.WriteLine(sf.ToString());
                         }
+                        System.Console.WriteLine("-----------------------------------------------------------------------");
+                        System.Console.Write("Enter To Continue");
+                        System.Console.ReadLine();
                         repeat = false;
                     }
                 }
@@ -116,7 +128,7 @@ namespace SSDUI
                         repeat = false;
                         break;
                         default:
-                        System.Console.WriteLine("Re-enter Your " + p_criteria + " Search Value: ");
+                        System.Console.WriteLine("Re-enter Your \"" + p_criteria.ToUpper() + "\" Search Value: ");
                         break;
                     }
                 }
