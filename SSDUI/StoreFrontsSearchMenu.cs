@@ -84,7 +84,7 @@ namespace SSDUI
             {
                 try
                 {
-                    value = Console.ReadLine();
+                    value = Console.ReadLine().ToUpper();
                     ListOfSearchedStoreFront = _sfBL.SearchStoreFronts(criteria, value);
                     if (ListOfSearchedStoreFront.Count == 0)
                     {
