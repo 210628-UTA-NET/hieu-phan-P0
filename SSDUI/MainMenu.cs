@@ -7,7 +7,7 @@ namespace SSDUI
         {
             System.Console.Clear();
             System.Console.WriteLine("-----------------------------------------------------------------------");
-            System.Console.WriteLine("Welcome to MainMenu!");
+            System.Console.WriteLine("Welcome to Main Menu!");
             System.Console.WriteLine("What would you like to do?");
             System.Console.WriteLine("[1] Customers Menu");
             System.Console.WriteLine("[2] StoreFronts Menu");
