@@ -26,5 +26,10 @@ namespace SSDBL
         {
             return _repo.GetAnOrderLineItems(p_order);
         }
+
+        public List<LineItems> GetAnOrderLineItems(int p_orderID)
+        {
+            return _repo.GetAnOrderLineItems(p_orderID);
+        }
     }
 }

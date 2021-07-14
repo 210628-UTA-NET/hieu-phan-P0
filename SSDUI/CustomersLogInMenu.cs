@@ -41,8 +41,9 @@ namespace SSDUI
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("Welcome " + theCustomer.Fname + ",");
                 System.Console.WriteLine("What would you like to do next?");
-                System.Console.WriteLine("[1] Place an Order");
-                System.Console.WriteLine("[2] View Order History");
+                System.Console.WriteLine("[1] Place New Order");
+                System.Console.WriteLine("[2] Find A Store");
+                System.Console.WriteLine("[3] View Order History");
                 System.Console.WriteLine("[0] Log Out");
                 System.Console.WriteLine("-----------------------------------------------------------------------");
             }
@@ -90,8 +91,9 @@ namespace SSDUI
                             System.Console.WriteLine("-----------------------------------------------------------------------");
                             System.Console.WriteLine("Welcome " + theCustomer.Fname + ",");
                             System.Console.WriteLine("What would you like to do next?");
-                            System.Console.WriteLine("[1] Place an Order");
-                            System.Console.WriteLine("[2] View Order History");
+                            System.Console.WriteLine("[1] Place New Order");
+                            System.Console.WriteLine("[2] Find A Store");
+                            System.Console.WriteLine("[3] View Order History");
                             System.Console.WriteLine("[0] Log Out");
                         }
                         else if (theCustomer.Fname != fname)
@@ -150,6 +152,8 @@ namespace SSDUI
                     PlaceOrder(theCustomer);
                     return MenuType.CustomersLogInMenu;
                 case "2":
+                    return MenuType.CustomersViewStoreMenu;
+                case "3":
                     ViewOrderHistory(theCustomer);
                     return MenuType.CustomersLogInMenu;
                 case "0":
@@ -182,6 +186,7 @@ namespace SSDUI
             if (myListOfOrders.Count == 0)
             {
                 System.Console.WriteLine("You Have No Orders");
+                System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.Write("Enter To Go Back");
                 System.Console.ReadLine();
             }
@@ -193,8 +198,9 @@ namespace SSDUI
                 }
                 System.Console.WriteLine("-----------------------------------------------------------------------");
                 System.Console.WriteLine("What Would You Like To Do?");
-                System.Console.WriteLine("[1]View An Order");
-                System.Console.WriteLine("[0]My Profile");
+                System.Console.WriteLine("[1] View An Order");
+                System.Console.WriteLine("[0] Go Back");
+                System.Console.Write("Enter Your Choice: ");
                 string string0 = Console.ReadLine();
                 switch(string0)
                 {
@@ -203,7 +209,7 @@ namespace SSDUI
                     double total = 0.0;
                     List<LineItems> lineItems = new List<LineItems>();
                     //Get LineItem with OrderID
-                    System.Console.WriteLine("Enter Order ID: ");
+                    System.Console.Write("Enter Order ID: ");
                     while(orderFlag)
                     {
                         try
@@ -226,13 +232,13 @@ namespace SSDUI
                                     if(p.Id == li.ProductId)
                                     {
                                         System.Console.WriteLine("Product Name: " + p.Name + 
-                                                        " ||| Price: $" + p.Price + 
+                                                        " ||| Price: $" + string.Format("{0:0.00}",p.Price) + 
                                                         " ||| Purchased Quantity: " + li.Quantity +
-                                                        " ||| Line Total: $" + (p.Price*li.Quantity));
+                                                        " ||| Line Total: $" +  string.Format("{0:0.00}",(p.Price*li.Quantity)));
                                     }
                                 }
                             }
-                            System.Console.WriteLine("-----------------------------------------------------------------------Order Total: $" + total);
+                            System.Console.WriteLine("-----------------------------------------------------------------------Order Total: $" + string.Format("{0:0.00}",total));
                             System.Console.Write("Enter To Continue");
                             System.Console.ReadLine();
                             orderFlag = false;
@@ -317,7 +323,7 @@ namespace SSDUI
                         {
                             System.Console.WriteLine("Product ID: [" + theInventories[i].ProductId +
                                                         "] ||| Product Name: " + listOfProducts[theInventories[i].ProductId - 1].Name +
-                                                        " ||| Product Price: $" + listOfProducts[theInventories[i].ProductId - 1].Price +
+                                                        " ||| Product Price: $" + string.Format("{0:0.00}",(listOfProducts[theInventories[i].ProductId - 1].Price)) +
                                                         " ||| Inventory Quantity: " + theInventories[i].Quantity);
                         }
                         System.Console.WriteLine("-----------------------------------------------------------------------");

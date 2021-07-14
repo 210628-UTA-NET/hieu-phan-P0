@@ -12,6 +12,7 @@ namespace SSDUI
         public IMenu GetMenu(MenuType p_nemu)
         {
             //Get the configuration from the appsetting.json file
+            // need System.IO to use Directory
             var configuration = new ConfigurationBuilder()
                                 .SetBasePath(Directory.GetCurrentDirectory())
                                 .AddJsonFile("appsetting.json")
@@ -53,7 +54,9 @@ namespace SSDUI
                                                         new InventoryBL(new InventoryDL(new DemoDbContext(options))),
                                                         new ProductBL(new ProductDL(new DemoDbContext(options))));
                 case MenuType.StoreFrontsOrderSearchMenu:
-                    return new StoreFrontsOrderSearchMenu(new OrderBL(new OrderDL(new DemoDbContext(options))));
+                    return new StoreFrontsOrderSearchMenu(new OrderBL(new OrderDL(new DemoDbContext(options))),
+                                                        new LineItemBL(new LineItemDL(new DemoDbContext(options))),
+                                                        new ProductBL(new ProductDL(new DemoDbContext(options))));
                 case MenuType.StoreFrontsSearchMenu:
                     return new StoreFrontsSearchMenu(new StoreFrontBL(new StoreFrontDL(new DemoDbContext(options))));
                 default:

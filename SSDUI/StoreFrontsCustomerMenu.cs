@@ -9,8 +9,10 @@ namespace SSDUI
     {
         private static List<Customers> listOfCustomers = new List<Customers>();
         private static List<Orders> listOfOrders = new List<Orders>();
+
         private ICustomerBL _customerBL;
         private IOrderBL _orderBL;
+
         public StoreFrontsCustomerMenu(ICustomerBL p_customerBL, IOrderBL p_orderBL)
         {
             _customerBL = p_customerBL;

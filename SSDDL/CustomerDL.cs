@@ -46,6 +46,15 @@ namespace SSDDL
             });
 
             _context.SaveChanges();
+
+            var theCustomer = (from cus in _context.Customers
+                            orderby cus.Id
+                            where cus.Fname == p_customer.Fname &&
+                                    cus.Lname == p_customer.Lname &&
+                                    cus.Phone == p_customer.Phone 
+                            select cus).Last();
+            p_customer.Id = theCustomer.Id;
+            
             return p_customer;
         }
 

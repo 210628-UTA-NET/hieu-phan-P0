@@ -8,12 +8,18 @@ namespace SSDUI
     public class StoreFrontsOrderSearchMenu : IMenu
     {
         private static List<Orders> listOfSearchedOrders = new List<Orders>();
+        private static List<LineItems> theOrderLineItems = new List<LineItems>();
+        private static List<Products> listOfProducts = new List<Products>();
         private string criteria;
         private string value;
         private IOrderBL _orderBL;
-        public StoreFrontsOrderSearchMenu(IOrderBL p_orderBL)
+        private ILineItemBL _lineItemBL;
+        private IProductBL _productBL;
+        public StoreFrontsOrderSearchMenu(IOrderBL p_orderBL, ILineItemBL p_lineItemBL, IProductBL p_productBL)
         {
             _orderBL = p_orderBL;
+            _lineItemBL = p_lineItemBL;
+            _productBL = p_productBL;
         }
         public void Menu()
         {
@@ -88,15 +94,41 @@ namespace SSDUI
                     {
                         System.Console.Clear();
                         System.Console.WriteLine("-----------------------------------------------------------------------");
-                        System.Console.WriteLine("List of Results");
                         foreach(Orders o in listOfSearchedOrders)
                         {
                             System.Console.WriteLine(o.ToString());
                         }
                         System.Console.WriteLine("-----------------------------------------------------------------------");
+                        repeat = false;
+                        //if for displaying an order detail
+                        if (criteria == "id")
+                        {
+                            double total = 0.0;
+                            theOrderLineItems = _lineItemBL.GetAnOrderLineItems(int.Parse(value));
+                            listOfProducts = _productBL.GetAllProducts();
+                            System.Console.WriteLine("Order Details");
+                            foreach(LineItems li in theOrderLineItems)
+                            {
+                                foreach(Products p in listOfProducts)
+                                {
+                                    if(p.Id == li.ProductId)
+                                    {
+                                        System.Console.WriteLine("Product Name: " + p.Name + 
+                                                        " ||| Price: $" + string.Format("{0:0.00}",p.Price) + 
+                                                        " ||| Purchased Quantity: " + li.Quantity +
+                                                        " ||| Line Total: $" +  string.Format("{0:0.00}",(p.Price*li.Quantity)));
+                                        total += (p.Price*li.Quantity);
+                                    }
+                                }
+                            }
+                            System.Console.WriteLine("-----------------------------------------------------------------------Order Total: $" + string.Format("{0:0.00}",total));
+                        }
+
                         System.Console.Write("Enter To Continue");
                         System.Console.ReadLine();
-                        repeat = false;
+
+
+                        
                     }
                 }
                 catch(System.Exception)

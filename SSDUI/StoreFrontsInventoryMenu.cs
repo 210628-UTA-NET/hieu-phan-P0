@@ -153,6 +153,7 @@ namespace SSDUI
             switch (userChoice)
             {
                 case "1":
+                    theInventories.Sort((x,y) => x.ProductId.CompareTo(y.ProductId));
                     System.Console.Clear();
                     System.Console.WriteLine("-----------------------------------------------------------------------");
                     System.Console.WriteLine("Store " + theStore.Name + " Inventory");
@@ -179,6 +180,17 @@ namespace SSDUI
                     System.Console.ReadLine();
                     return MenuType.StoreFrontsInventoryMenu;
                 case "3":
+                    System.Console.Clear();
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
+                    System.Console.WriteLine("Store " + theStore.Name + " Inventory");
+                    for (int i = 0; i < theInventories.Count; i++)
+                    {
+                        System.Console.WriteLine("Product ID: [" + theInventories[i].ProductId +
+                                                    "] ||| Product Name: " + listOfProducts[theInventories[i].ProductId - 1].Name +
+                                                    " ||| Product Price: $" + listOfProducts[theInventories[i].ProductId - 1].Price +
+                                                    " ||| Inventory Quantity: " + theInventories[i].Quantity);
+                    }
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
                     ReplenishInventory(theStore);
                     return MenuType.StoreFrontsInventoryMenu;
                 case "0":
@@ -243,12 +255,52 @@ namespace SSDUI
                                     System.Console.WriteLine("-----------------------------------------------------------------------");
                                     System.Console.WriteLine("Product ID[" + productId + "] ||| Quantity: " + quantity +" (Added)");
                                     System.Console.WriteLine("-----------------------------------------------------------------------");
+                                    System.Console.WriteLine("Store " + theStore.Name + " Inventory");
+                                    // Reset theInventories after adding new product
+                                    theInventories = new List<Inventories>();
+                                    List<Inventories> listOfInventories = _invBL.GetAllInventories();
+                                    foreach (Inventories inv in listOfInventories)
+                                    {
+                                        if(inv.StoreFrontId == theStore.Id)
+                                        {
+                                            theInventories.Add(inv);
+                                        }
+                                    }
+                                    for (int i = 0; i < theInventories.Count; i++)
+                                    {
+                                        System.Console.WriteLine("Product ID: [" + theInventories[i].ProductId +
+                                                                    "] ||| Product Name: " + listOfProducts[theInventories[i].ProductId - 1].Name +
+                                                                    " ||| Product Price: $" + listOfProducts[theInventories[i].ProductId - 1].Price +
+                                                                    " ||| Inventory Quantity: " + theInventories[i].Quantity);
+                                    }
+                                    System.Console.WriteLine("-----------------------------------------------------------------------");
                                     break;
                                     case "replenish":
                                     _invBL.ReplenishInventory(theStore.Id,productId,quantity);
                                     System.Console.Clear();
                                     System.Console.WriteLine("-----------------------------------------------------------------------");
                                     System.Console.WriteLine("Product ID[" + productId + "] ||| Quantity: " + quantity +" (Replenished)");
+                                    System.Console.WriteLine("-----------------------------------------------------------------------");
+                                    System.Console.WriteLine("Store " + theStore.Name + " Inventory");
+                                    // Reset theInventories after adding new product
+                                    theInventories = new List<Inventories>();
+                                    listOfInventories = _invBL.GetAllInventories();
+                                    foreach (Inventories inv in listOfInventories)
+                                    {
+                                        if(inv.StoreFrontId == theStore.Id)
+                                        {
+                                            theInventories.Add(inv);
+                                        }
+                                    }
+                                    // Sort the List base on its productID
+                                    theInventories.Sort((x,y) => x.ProductId.CompareTo(y.ProductId));
+                                    for (int i = 0; i < theInventories.Count; i++)
+                                    {
+                                        System.Console.WriteLine("Product ID: [" + theInventories[i].ProductId +
+                                                                    "] ||| Product Name: " + listOfProducts[theInventories[i].ProductId - 1].Name +
+                                                                    " ||| Product Price: $" + listOfProducts[theInventories[i].ProductId - 1].Price +
+                                                                    " ||| Inventory Quantity: " + theInventories[i].Quantity);
+                                    }
                                     System.Console.WriteLine("-----------------------------------------------------------------------");
                                     break;
                                 }
@@ -273,6 +325,7 @@ namespace SSDUI
                             System.Console.WriteLine("What Would You Like To Do?");
                             System.Console.WriteLine("[1] Replenish Inventory");
                             System.Console.WriteLine("[0] Go Back");
+                            System.Console.Write("Enter Your Choice: ");
                             string string0 = Console.ReadLine().ToLower();
                             switch(string0)
                             {

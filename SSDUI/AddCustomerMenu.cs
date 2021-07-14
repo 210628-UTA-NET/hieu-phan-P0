@@ -28,7 +28,7 @@ namespace SSDUI
             System.Console.WriteLine("[5] State      - " + _newCustomer.State);
             System.Console.WriteLine("[6] Email      - " + _newCustomer.Email);
             System.Console.WriteLine("[7] Phone      - " + _newCustomer.Phone);
-            System.Console.WriteLine("[8] Add Customer");
+            System.Console.WriteLine("[8] Create Customer");
             System.Console.WriteLine("[9] Empty All Fields");
             System.Console.WriteLine("[0] Main Menu");                        
         }
@@ -128,7 +128,13 @@ namespace SSDUI
                         System.Console.WriteLine("Cannot Add Customer");
                         System.Console.WriteLine(e);
                     }
-                    System.Console.WriteLine("Customer Was Created Succesfully!!!");
+                    System.Console.Clear();
+                    System.Console.WriteLine("------------------------------------------");
+                    System.Console.WriteLine("Customer Was Registered Succesfully!!!");
+                    System.Console.WriteLine("Please Remember Your ID!!!");
+                    System.Console.WriteLine("------------------------------------------");
+                    System.Console.WriteLine(_newCustomer.ToString());
+                    System.Console.WriteLine("------------------------------------------");
                     System.Console.Write("Enter To Continue");
                     System.Console.ReadLine();
                     _newCustomer = new Customers();

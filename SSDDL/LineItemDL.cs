@@ -58,5 +58,20 @@ namespace SSDDL
             return returnedList;
             
         }
+
+        public List<LineItems> GetAnOrderLineItems(int p_orderID)
+        {
+            List<LineItems> listOfAllLineItems = this.GetAllLineItems();
+            List<LineItems> returnedList = new List<LineItems>();
+            foreach (LineItems li in listOfAllLineItems)
+            {
+                if(li.OrderId == p_orderID)
+                {
+                    returnedList.Add(li);
+                }
+            }
+            return returnedList;
+            
+        }
     }
 }

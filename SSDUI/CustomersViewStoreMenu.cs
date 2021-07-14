@@ -14,6 +14,7 @@ namespace SSDUI
         }
         public void Menu()
         {
+            System.Console.Clear();
             System.Console.WriteLine("-----------------------------------------------------------------------");
             System.Console.WriteLine("Welcome To Store Searching Menu!!!");
             System.Console.WriteLine("What would you like to do?");
@@ -28,10 +29,9 @@ namespace SSDUI
 
             switch (userChoice)
             {
-                case "0":
-                    return MenuType.CustomersMenu;
                 case "1":
                     _listOfSearchedStore = _sfbl.GetAllStoreFronts();
+                    System.Console.Clear();
                     System.Console.WriteLine("-----------------------------------------------------------------------");
                     System.Console.WriteLine("List of Store Fronts:");
                     foreach(StoreFronts sf in _listOfSearchedStore)
@@ -40,10 +40,13 @@ namespace SSDUI
                         System.Console.WriteLine(sf.ToString());
                     }
                     System.Console.WriteLine("-----------------------------------------------------------------------");
-                    _listOfSearchedStore.Clear();
+                    System.Console.Write("Enter To Continue");
+                    System.Console.ReadLine();
                     return MenuType.CustomersViewStoreMenu;
                 case "2":
                     return MenuType.StoreFrontsSearchMenu;
+                case "0":
+                    return MenuType.CustomersMenu;
                 default:
                     Console.WriteLine("Input was not correct");
                     Console.WriteLine("Press Enter to continue");

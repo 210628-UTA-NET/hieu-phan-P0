@@ -37,11 +37,13 @@ namespace SSDUI
             {
                 case "1":
                     System.Console.Clear();
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
                     ListOfAllStoreFronts = _sfBL.GetAllStoreFronts();
                     foreach (StoreFronts sf in ListOfAllStoreFronts)
                     {
                         System.Console.WriteLine(sf.ToString());
                     }
+                    System.Console.WriteLine("-----------------------------------------------------------------------");
                     System.Console.Write("Enter To Continue");
                     System.Console.ReadLine();
                     return MenuType.StoreFrontsMenu;
